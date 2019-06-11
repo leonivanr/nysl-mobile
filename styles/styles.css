@@ -1,0 +1,37 @@
+:root {
+   --main-bg-color: #358A70;
+   --sec-bg-color: #77BF98;
+   --main-color: #0F2820;
+   --mainbg-color: #3F5A48;
+   --text-color: #EBF0D9;
+
+}
+body {
+    background-color: var(--sec-bg-color);
+    width: 100%;
+    margin: 0;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    background-color: var(--main-bg-color);
+    height: 3rem;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.nav-logo {
+    position: absolute;
+    height: 1rem;
+}
+/* MENU */
+main{
+    margin-top: 6rem;
+}
+.menu-items {
+    background-color: #0F2820;
+    height: 50px;
+    width: 50%;
+    margin: 10% auto 0 auto;
+    text-indent: 30px;
+}
