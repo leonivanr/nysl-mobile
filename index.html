@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
-    <title>NYSL - HOME</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" sizes="196x196" href="img/icon-homescreen.png">
+    <link rel="icon" href="img/icon-homescreen.png">
+    <title>NYSL</title>
 </head>
 
 <body>
@@ -35,7 +38,7 @@
                 </a>
             </div>
 
-            <div >
+            <div>
                 <a class="index-item item-3" href="sedes.html">
                     <h3>SEDES</h3>
                     <img id="img-ranking" src="img/sedes.jpg" alt="">
@@ -43,7 +46,7 @@
             </div>
 
             <div>
-                <a class="index-item item-4"href="equipos.html">
+                <a class="index-item item-4" href="equipos.html">
                     <h3>EQUIPOS</h3>
                     <img id="img-ranking" src="img/team.jpg" alt="">
                 </a>
@@ -53,6 +56,26 @@
     </main>
 
     <script src="scripts/app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBk8Y3zaypPQieCHmlmGhl3yIpoldggxoQ",
+            authDomain: "soccer-nysl-app.firebaseapp.com",
+            databaseURL: "https://soccer-nysl-app.firebaseio.com",
+            projectId: "soccer-nysl-app",
+            storageBucket: "soccer-nysl-app.appspot.com",
+            messagingSenderId: "945053085201",
+            appId: "1:945053085201:web:145fdcf63a675ad6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </body>
 
 </html>

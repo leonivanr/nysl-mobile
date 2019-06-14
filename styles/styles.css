@@ -98,11 +98,11 @@ h3{
     text-decoration: none;
     
 }
-#team-icon {
+.item {
     height: 1.8em;
     line-height: 3em;
     display: block;
-    margin: 3px auto 0 auto;
+    margin: 5px auto 0 auto;
 }
 .text-footer-icon {
     font-size: 0.8em;
