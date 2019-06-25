@@ -17,44 +17,300 @@
 <body>
     <nav>
         <div class="navbar">
-            <a href="#"><img class="nav-logo" src="img/nysl_logo.png" alt="Logo"></a>
+            <a href="#main"><img class="nav-logo" src="img/nysl_logo.png" alt="Logo"></a>
         </div>
     </nav>
     <!-- === CONTENIDO === -->
     <main>
-        <div class="index-wrap">
+        <div id="main" class="index-wrap">
 
-            <div>
-                <a class="index-item item-1" href="posiciones.html">
+            <div id="boton-posiciones">
+                <a class="index-item item-1" href="#posiciones">
                     <h3>POSICIONES</h3>
                     <img id="img-ranking" src="img/ranking.jpeg" alt="">
                 </a>
             </div>
 
-            <div>
-                <a class="index-item item-2" href="fixture.html">
+            <div id="boton-fixture">
+                <a class="index-item item-2" href="#fixture">
                     <h3>FIXTURE</h3>
                     <img id="img-ranking" src="img/fixture.jpg" alt="">
                 </a>
             </div>
 
-            <div>
-                <a class="index-item item-3" href="sedes.html">
+            <div id="boton-sedes">
+                <a class="index-item item-3" href="#sedes">
                     <h3>SEDES</h3>
                     <img id="img-ranking" src="img/sedes.jpg" alt="">
                 </a>
             </div>
 
-            <div>
-                <a class="index-item item-4" href="equipos.html">
+            <div id="boton-equipos">
+                <a class="index-item item-4" href="#equipos">
                     <h3>EQUIPOS</h3>
                     <img id="img-ranking" src="img/team.jpg" alt="">
                 </a>
             </div>
         </div>
-
     </main>
+    <!-- === POSICIONES === -->
+    <div id="posiciones">
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Equipo</th>
+                        <th>J</th>
+                        <th>G</th>
+                        <th>P</th>
+                        <th>E</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>EQUIPO A</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>EQUIPO A</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>EQUIPO A</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>EQUIPO A</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>EQUIPO A</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>EQUIPO A</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer-nav">
+            <a class="footer-nav-item link-equipos" href="#equipos">
+                <img class="item" src="img/icons/team-icon.png" alt="Equipos">
+                <span class="text-footer-icon">Equipos</span>
+            </a>
+            <a class="footer-nav-item link-sedes" href="#sedes">
+                <img class="item" src="img/icons/map-icon.png" alt="Sedes">
+                <span class="text-footer-icon">Sedes</span>
+            </a>
+            <a class="footer-nav-item link-fixture" href="#fixture">
+                <img class="item" src="img/icons/ranking-icon.png" alt="Fechas">
+                <span class="text-footer-icon">Fechas</span>
+            </a>
+        </div>
+    </div>
+    <!-- === SEDES === -->
+    <div id="sedes">
+        <div class="container">
+            <h1>SEDES</h1>
+        </div>
+        <div class="footer-nav">
+            <a class="footer-nav-item link-equipos" href="#equipos">
+                <img class="item" src="img/icons/team-icon.png" alt="Equipos">
+                <span class="text-footer-icon">Equipos</span>
+            </a>
+            <a class="footer-nav-item link-fixture" href="#fixture">
+                <img class="item" src="img/icons/calendar-icon.png" alt="Fechas">
+                <span class="text-footer-icon">Fechas</span>
+            </a>
+            <a class="footer-nav-item link-posiciones" href="#posiciones">
+                <img class="item" src="img/icons/ranking-icon.png" alt="Tabla">
+                <span class="text-footer-icon">Tabla</span>
+            </a>
+        </div>
+    </div>
+    <!-- === EQUIPOS === -->
+    <div id="equipos">
+        <div class="container">
+            <h1>EQUIPOS</h1>
+        </div>
 
+        <div class="footer-nav">
+            <a class="footer-nav-item link-sedes" href="#sedes">
+                <img class="item" src="img/icons/map-icon.png" alt="Sedes">
+                <span class="text-footer-icon">Sedes</span>
+            </a>
+            <a class="footer-nav-item link-fixture" href="#fixture">
+                <img class="item" src="img/icons/calendar-icon.png" alt="Fechas">
+                <span class="text-footer-icon">Fechas</span>
+            </a>
+            <a class="footer-nav-item link-posiciones" href="#posiciones">
+                <img class="item" src="img/icons/ranking-icon.png" alt="Tabla">
+                <span class="text-footer-icon">Tabla</span>
+            </a>
+        </div>
+    </div>
+    <!-- === FIXTURE === -->
+    <div id="fixture">
+        <div class="container">
+            <!-- FECHA ACTUAL -->
+            <div>
+                <h1 class="titulo-principal">FECHA ACTUAL</h1>
+            </div>
+            <!-- 1er Partido -->
+            <div class="detalle-partido-container">
+                <a class="detalle-partido" href="#fixture-detalle">
+                    <div class="fixture-partido">
+                        <img class="img-club left" src="img/equipos/equipo-a.png" alt="">
+                        <p class="versus">EQUIPO A</p>
+                        <p class="versus">-</p>
+                        <p class="versus">EQUIPO B</p>
+                        <img class="img-club right" src="img/equipos/equipo-b.png" alt="">
+                    </div>
+                </a>
+            </div>
+            <!-- 2do Partido -->
+            <div class="detalle-partido-container">
+                <a class="detalle-partido" href="#fixture-detalle">
+                    <div class="fixture-partido">
+                        <img class="img-club left" src="img/equipos/equipo-c.png" alt="">
+                        <p class="versus">EQUIPO C</p>
+                        <p class="versus">-</p>
+                        <p class="versus">EQUIPO D</p>
+                        <img class="img-club right" src="img/equipos/equipo-d.png" alt="">
+                    </div>
+                </a>
+            </div>
+            <!-- 3er Partido -->
+            <div class="detalle-partido-container">
+                <a class="detalle-partido" href="#fixture-detalle">
+                    <div class="fixture-partido">
+                        <img class="img-club left" src="img/equipos/equipo-e.png" alt="">
+                        <p class="versus">EQUIPO C</p>
+                        <p class="versus">-</p>
+                        <p class="versus">EQUIPO D</p>
+                        <img class="img-club right" src="img/equipos/equipo-f.png" alt="">
+                    </div>
+                </a>
+            </div>
+            <!-- PROXIMA FECHA -->
+            <div>
+                <h1 class="titulo-principal">PRÓXIMA FECHA</h1>
+            </div>
+            <!-- 1er Partido -->
+            <div class="detalle-partido-container">
+                <a class="detalle-partido" href="#fixture-detalle">
+                    <div class="fixture-partido">
+                        <img class="img-club left" src="img/equipos/equipo-a.png" alt="">
+                        <p class="versus">EQUIPO A</p>
+                        <p class="versus">-</p>
+                        <p class="versus">EQUIPO B</p>
+                        <img class="img-club right" src="img/equipos/equipo-b.png" alt="">
+                    </div>
+                </a>
+            </div>
+            <!-- 2do Partido -->
+            <div class="detalle-partido-container">
+                <a class="detalle-partido" href="#fixture-detalle">
+                    <div class="fixture-partido">
+                        <img class="img-club left" src="img/equipos/equipo-c.png" alt="">
+                        <p class="versus">EQUIPO C</p>
+                        <p class="versus">-</p>
+                        <p class="versus">EQUIPO D</p>
+                        <img class="img-club right" src="img/equipos/equipo-d.png" alt="">
+                    </div>
+                </a>
+            </div>
+            <!-- 3er Partido -->
+            <div class="detalle-partido-container">
+                <a class="detalle-partido" href="#fixture-detalle">
+                    <div class="fixture-partido">
+                        <img class="img-club left" src="img/equipos/equipo-e.png" alt="">
+                        <p class="versus">EQUIPO C</p>
+                        <p class="versus">-</p>
+                        <p class="versus">EQUIPO D</p>
+                        <img class="img-club right" src="img/equipos/equipo-f.png" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a class="footer-nav-item link-equipos" href="#equipos">
+                <img class="item" src="img/icons/team-icon.png" alt="Equipos">
+                <span class="text-footer-icon">Equipos</span>
+            </a>
+            <a class="footer-nav-item link-sedes" href="#sedes">
+                <img class="item" src="img/icons/map-icon.png" alt="Sedes">
+                <span class="text-footer-icon">Sedes</span>
+            </a>
+            <a class="footer-nav-item link-posiciones" href="#posiciones">
+                <img class="item" src="img/icons/ranking-icon.png" alt="Ranking">
+                <span class="text-footer-icon">Tabla</span>
+            </a>
+        </div>
+    </div>
+    <!-- === FIXTURE DETALLE=== -->
+    <div id="fixture-detalle">
+        <div class="container">
+
+            <div class="equipo-detalle">
+
+                <div class="equipo">
+                    <p class="versus">EQUIPO A</p>
+                    <img class="img-club-detalle" src="img/equipos/equipo-a.png" alt="">
+                </div>
+
+                <p class="versus">-</p>
+
+                <div class="equipo">
+                    <p class="versus">EQUIPO B</p>
+                    <img class="img-club-detalle" src="img/equipos/equipo-b.png" alt="">
+                </div>
+
+            </div>
+
+            <div class="equipo-info">
+                <p class="partido-subtitulo">Hora de juego: 9pm.</p>
+                <br>
+                <p class="partido-subtitulo">Lugar de juego: La Plaza.</p>
+            </div>
+
+        </div>
+        <div class="footer-nav">
+            <a class="footer-nav-item link-equipos" href="#equipos">
+                <img class="item" src="img/icons/team-icon.png" alt="Equipos">
+                <span class="text-footer-icon">Equipos</span>
+            </a>
+            <a class="footer-nav-item link-sedes" href="#sedes">
+                <img class="item" src="img/icons/map-icon.png" alt="Sedes">
+                <span class="text-footer-icon">Sedes</span>
+            </a>
+            <a class="footer-nav-item link-posiciones" href="#posiciones">
+                <img class="item" src="img/icons/ranking-icon.png" alt="Ranking">
+                <span class="text-footer-icon">Tabla</span>
+            </a>
+        </div>
+    </div>
+    <script src="scripts/jquery-3.4.1.min.js"></script>
     <script src="scripts/app.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
