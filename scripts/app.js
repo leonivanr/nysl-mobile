@@ -5,47 +5,47 @@ $('#sedes').hide();
 $('#posiciones').hide();
 
 $('#boton-posiciones').click(function () {
-    $('#main').fadeOut();
-    $('#posiciones').fadeIn();
+    $('#main').hide();
+    $('#posiciones').fadeIn('slow');
 })
 $('#boton-fixture').click(function () {
-    $('#main').fadeOut();
-    $('#fixture').fadeIn();
+    $('#main').hide();
+    $('#fixture').fadeIn('slow');
 })
 $('#boton-sedes').click(function () {
-    $('#main').fadeOut();
-    $('#sedes').fadeIn();
+    $('#main').hide();
+    $('#sedes').fadeIn('slow');
 })
 $('#boton-equipos').click(function () {
-    $('#main').fadeOut();
-    $('#equipos').fadeIn();
+    $('#main').hide();
+    $('#equipos').fadeIn('slow');
 })
 $('.nav-logo').click(function () {
     let hash = $(location).attr('hash');
-    $(hash).fadeOut();
-    $('#main').fadeIn();
+    $(hash).hide();
+    $('#main').fadeIn('slow');
 })
 $('.link-sedes').click(function () {
     let hash = $(location).attr('hash');
-    $(hash).fadeOut('fast');
-    $('#sedes').fadeIn();
+    $(hash).hide();
+    $('#sedes').fadeIn('slow');
 })
 $('.link-fixture').click(function () {
     let hash = $(location).attr('hash');
-    $(hash).fadeOut('fast');
-    $('#fixture').fadeIn();
+    $(hash).hide();
+    $('#fixture').fadeIn('slow');
 })
 $('.link-posiciones').click(function () {
     let hash = $(location).attr('hash');
-    $(hash).fadeOut('fast');
-    $('#posiciones').fadeIn();
+    $(hash).hide();
+    $('#posiciones').fadeIn('slow');
 })
 $('.link-equipos').click(function () {
     let hash = $(location).attr('hash');
-    $(hash).fadeOut('fast');
-    $('#equipos').fadeIn();
+    $(hash).hide();
+    $('#equipos').fadeIn('slow');
 })
 $('.detalle-partido').click(function () {
-    $('#fixture').fadeOut('fast');
-    $('#fixture-detalle').fadeIn();
+    $('#fixture').hide();
+    $('#fixture-detalle').fadeIn('slow');
 })
