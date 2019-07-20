@@ -7,78 +7,48 @@
 
 body,
 html {
-    background-color: var(--sec-bg-color);
+    background-color: var(--sec-bg-color) !important;
     width: 100%;
     height: 100%;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald', sans-serif !important;
 }
+.pages > div {
+    display: none;
 
-main {
-    padding-top: 10vh;
-    color: #EBF0D9;
 }
-
-.container {
-    height: 100%;
-    padding: 3vh 1vh;
-    text-align: center;
+.pages > div.activo {
+    display: block !important;
 }
 
 .navbar {
-    position: fixed;
-    top: 0;
     background-color: var(--main-bg-color);
-    height: 10vh;
     width: 100%;
-    margin: 0px;
-    padding: 0px;
     box-shadow: 1px 1px 5px 0px rgba(15, 40, 32, 0.75);
-    ;
-
 }
 
 .nav-logo {
-    float: left;
     height: 7vh;
-    margin-left: 10%;
-    margin-top: 1.5vh;
-}
-
-.volver-nav {
-    float: right;
-    text-align: center;
-    margin-right: 10%;
-    margin-top: 1.5vh;
-    text-decoration: none;
-
-}
-
-#volver-item {
-    height: 4vh;
-    display: block;
-}
-
-#volver-text {
-    font-size: 0.7em;
-    color: #EBF0D9;
 }
 
 /* MENU INICIO*/
-.index-wrap {
-    height: 100%;
+.main {
+    height: 85vh;
+    width: 100vw;
+    /* display: flex !important; */
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
-.index-item {
-    background-color: var(--main-bg-color);
-    width: 80%;
+.main-item {
+    background-color: var(--main-bg-color) !important;
     height: 15vh;
+    width: 85% !important;
     text-indent: 1em;
-    position: absolute;
     border-radius: 0.5em;
     box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
 }
 
-#img-ranking {
+.main-img {
     height: 15vh;
     float: right;
     border-top-right-radius: 0.5em;
@@ -93,57 +63,31 @@ h3 {
     text-decoration: none;
     color: #EBF0D9;
 }
-
-.item-1 {
-    top: 16%;
-    left: 10%;
+.bg-main{
+    background-color: var(--main-bg-color);
 }
 
-.item-2 {
-    top: 35%;
-    left: 10%;
-}
 
-.item-3 {
-    top: 54%;
-    left: 10%;
+#nav-bar{
 }
-
-.item-4 {
-    top: 73%;
-    left: 10%;
-}
-
 /* BARRA DE NAVAGACIÓN FOOTER */
 .footer-nav {
     position: fixed;
     bottom: 0;
     width: 100%;
-    overflow: hidden;
     box-shadow: -1px -1px 5px 0px rgba(15, 40, 32, 0.75);
 }
 
 .footer-nav-item {
-    text-align: center;
-    float: left;
     background-color: #358A70;
-    width: 33.333%;
+    width: 25%;
     height: 10vh;
-    text-decoration: none;
 }
 
 .item {
     height: 5vh;
-    /* line-height: 3em; */
-    display: block;
-    margin: 1vh auto 0 auto;
 }
 
-.text-footer-icon {
-    font-size: 0.8em;
-    color: #EBF0D9;
-    text-shadow: 1px 1px 1px #0F2820;
-}
 
 /* FIXTURE */
 
@@ -151,24 +95,28 @@ h3 {
     width: 7vh;
     height: 7vh;
 }
+
 .versus {
     line-height: 7vh;
     text-shadow: 1px 1px 1px #0F2820;
 }
+
 .fixture-partido {
     display: flex;
     width: 80%;
     margin: auto;
     justify-content: space-between;
 }
+
 .titulo-principal {
     text-decoration: underline;
     color: var(--main-shadow);
+}
 
-}
 .detalle-partido-container {
-    margin: 3vh 0;
+    margin: 2vh 0;
 }
+
 .detalle-partido {
     text-decoration: none;
     color: var(--text-color);
@@ -179,6 +127,7 @@ h3 {
     width: 15vh;
     height: 15vh;
 }
+
 .equipo-detalle {
     width: 80%;
     margin: 10vh auto;
@@ -186,12 +135,210 @@ h3 {
     justify-content: space-between;
     align-items: center;
 }
+
 .equipo-info {
     width: 74%;
     margin: 0 auto;
     text-align: left;
 }
+
 .partido-subtitulo {
     color: var(--text-color);
     text-shadow: 1px 1px 1px #0F2820;
+}
+
+/* PAGINA SEDES */
+
+.sedes-item {
+    background-color: var(--main-bg-color);
+    width: 70%;
+    height: 10vh;
+    z-index: 0;
+    text-decoration: none;
+    text-align: center;
+    position: absolute;
+    border-radius: 0.5em;
+    box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
+    color: var(--text-color);
+    text-shadow: 1px 1px 1px #0F2820;
+}
+.sedes-titulo {
+    line-height: 10vh;
+    font-size: 1.5em;
+}
+.sedes-item-1 {
+    top: 15%;
+    left: 15%;      
+}
+.sedes-item-2 {
+    top: 30%;
+    left: 15%;
+}
+.sedes-item-3 {
+    top: 45%;
+    left: 15%; 
+}
+.sedes-item-4 {
+    top: 60%;
+    left: 15%; 
+}
+.sedes-item-5 {
+    top: 75%;
+    left: 15%; 
+}
+.sedes-item-6 {
+    top: 90%;
+    left: 15%; 
+}
+
+/* PAGINA EQUIPOS */
+
+.equipos-item {
+    background-color: var(--main-bg-color);
+    width: 80%;
+    height: 10vh;
+    text-decoration: none;
+    text-align: left;
+    text-indent: 1em;
+    position: absolute;
+    border-radius: 0.5em;
+    box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
+    color: var(--text-color);
+    text-shadow: 1px 1px 1px #0F2820;
+}
+.equipos-titulo {
+    line-height: 10vh;
+    font-size: 1.5em;
+    float: left;
+}
+.equipos-img {
+    float: right;
+    width: 8vh;
+    height:  8vh;
+    padding: 1vh;
+}
+.equipos-item-1 {
+    top: 15%;
+    left: 10%;      
+}
+.equipos-item-2 {
+    top: 30%;
+    left: 10%;
+}
+.equipos-item-3 {
+    top: 45%;
+    left: 10%; 
+}
+.equipos-item-4 {
+    top: 60%;
+    left: 10%; 
+}
+.equipos-item-5 {
+    top: 75%;
+    left: 10%; 
+}
+.equipos-item-6 {
+    top: 90%;
+    left: 10%; 
+}
+
+/* TABLA POSICIONES */
+table.tabla-puntos {
+    border: 2px solid var(--main-bg-color);
+    background-color: var(--sec-bg-color);
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.tabla-puntos td,
+table.tabla-puntos th {
+    border: 1px solid var(--main-bg-color);
+    padding: 3px 2px;
+}
+
+table.tabla-puntos tbody td {
+    font-size: 1em;
+    line-height: 2em;
+}
+
+table.tabla-puntos thead {
+    background: var(--main-bg-color);
+}
+
+table.tabla-puntos thead th {
+    font-size: 1em;
+    line-height: 2em;
+    color: #FFFFFF;
+}
+
+/* LANDSCAPE */
+@media (orientation: landscape) {
+    .container {
+        height: 100%;
+        padding: 13vh 1vh 13vh 1vh;
+        text-align: center;
+    }
+
+    .navbar {
+        height: 13vh;
+    }
+
+    .nav-logo {
+        height: 10vh;
+    }
+
+    .index-item {
+        width: 38%;
+        height: 25vh;
+    }
+
+    #img-ranking {
+        height: 25vh;
+    }
+
+    h3 {
+        line-height: 25vh;
+        font-size: 1em;
+    }
+
+    .item-1 {
+        top: 22%;
+        left: 10%;
+    }
+
+    .item-2 {
+        top: 60%;
+        left: 10%;
+    }
+
+    .item-3 {
+        top: 22%;
+        left: 54%;
+    }
+
+    .item-4 {
+        top: 60%;
+        left: 54%;
+    }
+
+    .footer-nav-item {
+        height: 13vh;
+    }
+
+    .fixture-partido {
+        margin: auto;
+    }
+
+    #land-fixture {
+        margin-top: 3vh;
+        width: 45%;
+        text-align: center;
+        float: left;
+    }
+
+    #land-fixture-detalle {
+        width: 45%;
+        float: right;
+    }
 }

@@ -1,51 +1,40 @@
-$('#fixture').hide();
-$('#fixture-detalle').hide();
-$('#equipos').hide();
-$('#sedes').hide();
-$('#posiciones').hide();
+$(document).ready(function () {
+    $('.main').css('display','flex');
 
-$('#boton-posiciones').click(function () {
-    $('#main').hide();
-    $('#posiciones').fadeIn('slow');
-})
-$('#boton-fixture').click(function () {
-    $('#main').hide();
-    $('#fixture').fadeIn('slow');
-})
-$('#boton-sedes').click(function () {
-    $('#main').hide();
-    $('#sedes').fadeIn('slow');
-})
-$('#boton-equipos').click(function () {
-    $('#main').hide();
-    $('#equipos').fadeIn('slow');
-})
-$('.nav-logo').click(function () {
-    let hash = $(location).attr('hash');
-    $(hash).hide();
-    $('#main').fadeIn('slow');
-})
-$('.link-sedes').click(function () {
-    let hash = $(location).attr('hash');
-    $(hash).hide();
-    $('#sedes').fadeIn('slow');
-})
-$('.link-fixture').click(function () {
-    let hash = $(location).attr('hash');
-    $(hash).hide();
-    $('#fixture').fadeIn('slow');
-})
-$('.link-posiciones').click(function () {
-    let hash = $(location).attr('hash');
-    $(hash).hide();
-    $('#posiciones').fadeIn('slow');
-})
-$('.link-equipos').click(function () {
-    let hash = $(location).attr('hash');
-    $(hash).hide();
-    $('#equipos').fadeIn('slow');
-})
-$('.detalle-partido').click(function () {
-    $('#fixture').hide();
-    $('#fixture-detalle').fadeIn('slow');
-})
+    $('.main a').click(function (e) {
+        $('.main').css('display','none');
+        let aux = $(e.target);
+        let proximaPagina;
+        if(typeof aux.parent()[0].hash !== "undefined") {
+            proximaPagina = aux.parent()[0].hash;
+        } else {
+            proximaPagina = e.target.hash;
+        }
+         
+        // $('#main').removeClass('activo');
+        $(proximaPagina).addClass('activo');
+        $('#nav-bar').css('display','flex');
+
+    })
+    $('#logo-link').click(function (e) {
+
+        $('.pages .activo').removeClass('activo');
+        // $('#main').removeClass('activo');
+        $('#nav-bar').css('display','none');
+        $('.main').css('display','flex');
+
+    })
+    //Detectar proxima pagina y ocultar.
+    $('#nav-bar a').click(function (e) {
+        e.preventDefault();
+        let aux = $(e.target);
+        if(typeof aux.parent()[0].hash !== "undefined") {
+            proximaPagina = aux.parent()[0].hash;
+        } else {
+            proximaPagina = e.target.hash;
+        }
+        $('.pages .activo').removeClass('activo');
+        $(proximaPagina).addClass('activo');
+    })
+
+});
