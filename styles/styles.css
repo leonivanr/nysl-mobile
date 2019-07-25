@@ -12,29 +12,80 @@ html {
     height: 100%;
     font-family: 'Oswald', sans-serif !important;
 }
-.pages > div {
-    display: none;
-
+.pages {
+    position: relative;
 }
-.pages > div.activo {
+.pages>div {
+    display: none;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+}
+
+.pages>div.activo {
+    display: block !important;
+}
+.in, .out {
+    animation-timing-function: ease-in-out;
+    --webkit-animation-timing-function: ease-in-out;
+    animation-duration: 300ms;
+    --webkit-animation-duration: 500ms;
+}
+.fade.in {
+    --webkit-animation-name: fade-in;
+    animation-name: fade-in;
+    z-index: 10;
+}
+.fade.out {
+    z-index: 0;
+}
+@keyframes fade-in {
+    from { opacity: 0;}
+    to { opacity : 1;}
+}
+
+.nav-activo {
     display: block !important;
 }
 
+.index-pd {
+    padding-top: 56px !important;
+}
+
+.index-mg {
+    margin-top: 56px !important;
+}
+
+/*//////////////////////////*/
+/* TOP NAV BAR */
+/*//////////////////////////*/
+.m-nav {
+    margin-bottom: 15vh !important;
+}
+.p-nav {
+    padding-bottom: 15vh !important;
+}
 .navbar {
-    background-color: var(--main-bg-color);
     width: 100%;
+    background-color: var(--main-bg-color);
     box-shadow: 1px 1px 5px 0px rgba(15, 40, 32, 0.75);
+}
+
+.sticky-off {
+    top: -56px !important;
 }
 
 .nav-logo {
     height: 7vh;
 }
-
+/*//////////////////////////*/
 /* MENU INICIO*/
+/*//////////////////////////*/
 .main {
-    height: 85vh;
+    height: 90vh;
     width: 100vw;
-    /* display: flex !important; */
+    display: flex !important;
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -63,14 +114,18 @@ h3 {
     text-decoration: none;
     color: #EBF0D9;
 }
-.bg-main{
+
+.bg-main {
     background-color: var(--main-bg-color);
 }
-
+/*//////////////////////////*/
 /* BARRA DE NAVAGACIÓN FOOTER */
+/*//////////////////////////*/
+
 .footer-nav {
     position: fixed;
     bottom: 0;
+    z-index: 100;
     width: 100%;
     box-shadow: -1px -1px 5px 0px rgba(15, 40, 32, 0.75);
 }
@@ -85,8 +140,35 @@ h3 {
     height: 5vh;
 }
 
+/*//////////////////////////*/
+/* TABLA POSICIONES */
+/*//////////////////////////*/
+table.tabla-puntos td,
+table.tabla-puntos th {
+    border-top: 1px solid var(--main-bg-color);
+    padding: 3px 2px;
+}
 
+table.tabla-puntos tbody td {
+    font-size: 1em;
+    line-height: 2em;
+}
+
+table.tabla-puntos thead {
+    background: var(--main-bg-color);
+}
+
+table.tabla-puntos thead th {
+    font-size: 1em;
+    line-height: 2em;
+    border-bottom: none;
+    color: #FFFFFF;
+}
+
+
+/*///////////////////////////*/
 /* FIXTURE */
+/*///////////////////////////*/
 
 .img-club {
     width: 7vh;
@@ -118,8 +200,10 @@ h3 {
     text-decoration: none;
     color: var(--text-color);
 }
-
+/*//////////////////////////*/
 /* FIXTURE DETALLE */
+/*//////////////////////////*/
+
 .img-club-detalle {
     width: 15vh;
     height: 15vh;
@@ -144,51 +228,40 @@ h3 {
     text-shadow: 1px 1px 1px #0F2820;
 }
 
-/* PAGINA SEDES */
+/*//////////////////////////*/
+/* SEDES */
+/*///////////////////////////*/
+#sedes {
+    width: 100%;
+    height: 80vh !important;
+}
+.modal-content {
+    background-color: var(--text-color);
+    color: #0F2820;
+}
 
 .sedes-item {
     background-color: var(--main-bg-color);
-    width: 70%;
+    width: 80% !important;
     height: 10vh;
     z-index: 0;
     text-decoration: none;
     text-align: center;
-    position: absolute;
     border-radius: 0.5em;
     box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
     color: var(--text-color);
     text-shadow: 1px 1px 1px #0F2820;
+    cursor: pointer;
 }
+
 .sedes-titulo {
     line-height: 10vh;
     font-size: 1.5em;
 }
-.sedes-item-1 {
-    top: 15%;
-    left: 15%;      
-}
-.sedes-item-2 {
-    top: 30%;
-    left: 15%;
-}
-.sedes-item-3 {
-    top: 45%;
-    left: 15%; 
-}
-.sedes-item-4 {
-    top: 60%;
-    left: 15%; 
-}
-.sedes-item-5 {
-    top: 75%;
-    left: 15%; 
-}
-.sedes-item-6 {
-    top: 90%;
-    left: 15%; 
-}
 
+/*//////////////////////////*/
 /* PAGINA EQUIPOS */
+/*//////////////////////////*/
 
 .equipos-item {
     background-color: var(--main-bg-color);
@@ -197,77 +270,25 @@ h3 {
     text-decoration: none;
     text-align: left;
     text-indent: 1em;
-    position: absolute;
     border-radius: 0.5em;
     box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
     color: var(--text-color);
     text-shadow: 1px 1px 1px #0F2820;
 }
+
 .equipos-titulo {
     line-height: 10vh;
     font-size: 1.5em;
     float: left;
 }
+
 .equipos-img {
     float: right;
-    width: 8vh;
-    height:  8vh;
-    padding: 1vh;
-}
-.equipos-item-1 {
-    top: 15%;
-    left: 10%;      
-}
-.equipos-item-2 {
-    top: 30%;
-    left: 10%;
-}
-.equipos-item-3 {
-    top: 45%;
-    left: 10%; 
-}
-.equipos-item-4 {
-    top: 60%;
-    left: 10%; 
-}
-.equipos-item-5 {
-    top: 75%;
-    left: 10%; 
-}
-.equipos-item-6 {
-    top: 90%;
-    left: 10%; 
+    width: 9vh;
+    height: 9vh;
+    margin: 0.5vh;
 }
 
-/* TABLA POSICIONES */
-table.tabla-puntos {
-    border: 2px solid var(--main-bg-color);
-    background-color: var(--sec-bg-color);
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-}
-
-table.tabla-puntos td,
-table.tabla-puntos th {
-    border: 1px solid var(--main-bg-color);
-    padding: 3px 2px;
-}
-
-table.tabla-puntos tbody td {
-    font-size: 1em;
-    line-height: 2em;
-}
-
-table.tabla-puntos thead {
-    background: var(--main-bg-color);
-}
-
-table.tabla-puntos thead th {
-    font-size: 1em;
-    line-height: 2em;
-    color: #FFFFFF;
-}
 
 /* LANDSCAPE */
 @media (orientation: landscape) {
