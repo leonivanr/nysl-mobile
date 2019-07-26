@@ -176,24 +176,35 @@ table.tabla-puntos thead th {
 }
 
 .versus {
+    font-size: 1.2em;
     line-height: 7vh;
     text-shadow: 1px 1px 1px #0F2820;
+    margin-bottom:0;
 }
 
 .fixture-partido {
     display: flex;
-    width: 80%;
+    width: 90%;
     margin: auto;
     justify-content: space-between;
+    padding: 0.5em 0;
 }
 
 .titulo-principal {
-    text-decoration: underline;
     color: var(--main-shadow);
-}
+    font-size: 2em;
+    text-align: center;
 
+}
+.subtitulo-fecha {
+    display: block;
+    color: var(--main-bg-color);
+    font-size: 1.5em;
+}
 .detalle-partido-container {
     margin: 2vh 0;
+    border:1px solid #358A70;
+    border-radius: 0.5em;
 }
 
 .detalle-partido {
@@ -210,24 +221,32 @@ table.tabla-puntos thead th {
 }
 
 .equipo-detalle {
-    width: 80%;
-    margin: 10vh auto;
+    width: 90%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .equipo-info {
-    width: 74%;
+    width: 100%;
     margin: 0 auto;
     text-align: left;
+    color: var(--main-shadow);
 }
 
 .partido-subtitulo {
     color: var(--text-color);
     text-shadow: 1px 1px 1px #0F2820;
 }
-
+.versus-modal {
+    font-size: 1.2em;
+    line-height: 7vh;
+    margin-bottom:0;
+}
+.modal-date {
+    color: var(--main-bg-color);
+}
 /*//////////////////////////*/
 /* SEDES */
 /*///////////////////////////*/

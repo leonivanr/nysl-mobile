@@ -195,21 +195,162 @@
         </div>
 
         <!-- === FIXTURE === -->
-        <div id="fixture">
+        <div id="fixture" >
             <!-- FIXTURE PRINCIPAL -->
+            <div class="container mt-4">
 
-            <!-- FECHA ACTUAL -->
-            <div>
-                <h1 class="titulo-principal">FECHA ACTUAL</h1>
+                <!-- COLAPSE SEPTIEMPRE -->
+                <div class="mx-auto text-center">
+                    <a class="titulo-principal" data-toggle="collapse" href="#fechasSeptiembre" role="button"
+                        aria-expanded="true" aria-controls="fechasSeptiembre">
+                        SEPTIEMBRE
+                    </a>
+
+                    <div class="collapse show" id="fechasSeptiembre" data-parent="#fixture">
+                        <div id="displaySeptiembre" class="">
+                            <!-- DOMINGO 1 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoUno" role="button"
+                                aria-expanded="false" aria-controls="domingoUno">
+                                1/9
+                            </a>
+                            <div class="collapse show" data-parent="#displaySeptiembre" id="domingoUno">
+
+                            </div>
+                            <!-- DOMINGO 8 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoOcho" role="button"
+                                aria-expanded="false" aria-controls="domingoOcho">
+                                8/9
+                            </a>
+                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoOcho">
+
+                            </div>
+                            <!-- DOMINGO 15 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoQuince" role="button"
+                                aria-expanded="false" aria-controls="domingoQuin">
+                                15-9
+                            </a>
+                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoQuince">
+
+                            </div>
+                            <!-- DOMINGO 22 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVdos" role="button"
+                                aria-expanded="false" aria-controls="domingoVdos">
+                                22-9
+                            </a>
+                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoVdos">
+
+                            </div>
+                            <!-- DOMINGO 29 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVnueve" role="button"
+                                aria-expanded="false" aria-controls="domingoVnueve">
+                                29-9
+                            </a>
+                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoVnueve">
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLAPSE OCTUBRE -->
+                <div class="mx-auto text-center">
+
+
+                    <a class="titulo-principal" data-toggle="collapse" href="#fechasOctubre" role="button"
+                        aria-expanded="false" aria-controls="fechasOctubre">
+                        OCTUBRE
+                    </a>
+
+
+                    <div class="collapse" id="fechasOctubre" data-parent="#fixture">
+                        <div id="displayOctubre" class="">
+                            <!-- DOMINGO 6-10 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoSeis" role="button"
+                                aria-expanded="false" aria-controls="domingoSeis">
+                                6-10
+                            </a>
+                            <div class="collapse" data-parent="#displayOctubre" id="domingoSeis">
+
+                            </div>
+                            <!-- DOMINGO 13 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoTrece" role="button"
+                                aria-expanded="false" aria-controls="domingoTrece">
+                                13-10
+                            </a>
+                            <div class="collapse" data-parent="#displayOctubre" id="domingoTrece">
+
+                            </div>
+                            <!-- DOMINGO 20 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVeinte" role="button"
+                                aria-expanded="false" aria-controls="domingoVeinte">
+                                20-10
+                            </a>
+                            <div class="collapse" data-parent="#displayOctubre" id="domingoVeinte">
+
+                            </div>
+                            <!-- DOMINGO 27 -->
+
+                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVsiete" role="button"
+                                aria-expanded="false" aria-controls="domingoVsiete">
+                                27-10
+                            </a>
+                            <div class="collapse" data-parent="#displayOctubre" id="domingoVsiete">
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal body -->
+                            <div class="modal-body" id="body-data">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <br>
+                                <div class="equipo-detalle">
+                                    <div class="text-center">
+                                        <p class="versus">TEAM 1</p>
+                                        <img class="img-club-detalle" src="./img/equipos/baroda.png" alt="">
+                                    </div>
+                                    <!-- <p class="versus">-</p> -->
+                                    <div class="text-center">
+                                        <p class="versus">TEAM 2</p>
+                                        <img class="img-club-detalle" src="./img/equipos/york.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="equipo-info mt-4">
+                                    <h4>Lugar: La plaza.</h4>
+                                    <h4>Hora: 9.30 PM</h4>
+                                    <h4>Fecha: SEMPTIEMBRE 12</h4>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            
         </div>
 
         <!-- === FOOTER NAV BAR === -->
         <div id="nav-bar">
 
             <div class="footer-nav d-flex">
-    
+
                 <a class="footer-nav-item link-posiciones d-flex align-content-center" href="#fixture">
                     <img class="item m-auto" src="img/icons/calendar-icon.png" alt="Fixture">
                 </a>
@@ -222,9 +363,9 @@
                 <a class="footer-nav-item link-equipos d-flex align-content-center" href="#equipos">
                     <img class="item m-auto" src="img/icons/team-icon.png" alt="Equipos">
                 </a>
-    
+
             </div>
-    
+
         </div>
 
 
