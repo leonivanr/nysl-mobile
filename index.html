@@ -8,6 +8,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/main.css">
+
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link rel="shortcut icon" sizes="196x196" href="img/icon-homescreen.png">
     <link rel="icon" href="img/icon-homescreen.png">
@@ -15,9 +17,10 @@
 </head>
 
 <body>
+    <div class="se-pre-con"></div>
     <!-- === TOP NAV BAR === -->
 
-    <nav class="navbar navbar-expand-md navbar-dark sticky-top px-4">
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top">
 
         <a id="logo-link" href="#index"><img class="nav-logo" src="img/nysl_logo.png" alt="Logo"></a>
 
@@ -29,16 +32,17 @@
         <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
-                <li class="nav-item text-center">
-                    <a class="nav-link" href="#">Foros</a>
+                <li id="li-login" class="nav-item text-center" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <a id="sign-in-button-dos" class="nav-link" href="#"><u>Conectarse</u></a>
                 </li>
-                <li class="nav-item text-center">
-                    <a class="nav-link" href="#">Contacto</a>
+                <li id="li-logout" class="nav-item text-center hide" data-toggle="collapse"
+                    data-target="#collapsibleNavbar">
+                    <a id="sign-out-button" class="nav-link" href="#"><u>Desconectarse</u></a>
                 </li>
             </ul>
         </div>
-
     </nav>
+
 
     <div class="pages">
 
@@ -72,7 +76,7 @@
         </div>
 
         <!-- === POSICIONES === -->
-        <div id="posiciones">
+        <div id="posiciones" >
             <div class="container">
 
                 <br>
@@ -89,55 +93,8 @@
                             <th>P</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="pl-2">DFC Academy</td>
-                            <td>18</td>
-                            <td>6</td>
-                            <td>6</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-2">KTFA Club</td>
-                            <td>15</td>
-                            <td>6</td>
-                            <td>5</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-2">Baroda F.C.</td>
-                            <td>13</td>
-                            <td>6</td>
-                            <td>4</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-2">Kinka F.C.</td>
-                            <td>13</td>
-                            <td>6</td>
-                            <td>4</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-2">Tusla United</td>
-                            <td>9</td>
-                            <td>6</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td class="pl-2">New York</td>
-                            <td>8</td>
-                            <td>6</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
-                        </tr>
+                    <tbody id="tbl-puntaje">
+
                     </tbody>
                     </tr>
                 </table>
@@ -148,32 +105,27 @@
                     <thead>
                         <tr>
                             <th class="pl-2">Nombre</th>
-                            <th>G</th>
-                            <th>A</th>
+                            <th class="text-right pr-3">Goles</th>
+                            <th class="text-right pr-3">Asist.</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbl-goles">
                         <tr>
-                            <td class="pl-2">DFC Academy</td>
-                            <td>18</td>
-                            <td>6</td>
-
+                            <td class="">Joshua Morris</td>
+                            <td class="text-right pr-3">21</td>
+                            <td class="text-right pr-3">11</td>
                         </tr>
                         <tr>
-                            <td class="pl-2">KTFA Club</td>
-                            <td>15</td>
-                            <td>6</td>
-
+                            <td>Ben May</td>
+                            <td class="text-right pr-3">16</td>
+                            <td class="text-right pr-3">10</td>
                         </tr>
                         <tr>
-                            <td class="pl-2">Baroda F.C.</td>
-                            <td>13</td>
-                            <td>6</td>
-
+                            <td>Austyn Franklin</td>
+                            <td class="text-right pr-3">11</td>
+                            <td class="text-right pr-3">5</td>
                         </tr>
-
                     </tbody>
-                    </tr>
                 </table>
                 <br><br><br>
 
@@ -191,159 +143,219 @@
         <!-- === EQUIPOS === -->
         <div id="equipos">
 
+            <div class="modal fade" id="equipos-modal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
 
+                        <!-- Modal body -->
+                        <div class="modal-body" id="eq-modal-data">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- === FIXTURE === -->
         <div id="fixture" >
             <!-- FIXTURE PRINCIPAL -->
-            <div class="container mt-4">
+            <div class="container mt-4 fix-container">
 
-                <!-- COLAPSE SEPTIEMPRE -->
-                <div class="mx-auto text-center">
-                    <a class="titulo-principal" data-toggle="collapse" href="#fechasSeptiembre" role="button"
-                        aria-expanded="true" aria-controls="fechasSeptiembre">
-                        SEPTIEMBRE
-                    </a>
-
-                    <div class="collapse show" id="fechasSeptiembre" data-parent="#fixture">
-                        <div id="displaySeptiembre" class="">
-                            <!-- DOMINGO 1 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoUno" role="button"
-                                aria-expanded="false" aria-controls="domingoUno">
-                                1/9
-                            </a>
-                            <div class="collapse show" data-parent="#displaySeptiembre" id="domingoUno">
-
+                <div id="fixture-port">
+                    <!-- COLAPSE SEPTIEMPRE -->
+                    <div class="mx-auto text-center">
+                        <a class="titulo-principal" data-toggle="collapse" href="#fechasSeptiembre" role="button"
+                            aria-expanded="true" aria-controls="fechasSeptiembre">
+                            SEPTIEMBRE
+                        </a>
+    
+                        <div class="collapse show" id="fechasSeptiembre" data-parent="#fixture">
+                            <div id="displaySeptiembre" class="">
+                                <!-- DOMINGO 1 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoUno" role="button"
+                                    aria-expanded="false" aria-controls="domingoUno">
+                                    1/9
+                                </a>
+                                <div class="collapse show" data-parent="#displaySeptiembre" id="domingoUno">
+    
+                                </div>
+                                <!-- DOMINGO 8 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoOcho" role="button"
+                                    aria-expanded="false" aria-controls="domingoOcho">
+                                    8/9
+                                </a>
+                                <div class="collapse" data-parent="#displaySeptiembre" id="domingoOcho">
+    
+                                </div>
+                                <!-- DOMINGO 15 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoQuince" role="button"
+                                    aria-expanded="false" aria-controls="domingoQuin">
+                                    15-9
+                                </a>
+                                <div class="collapse" data-parent="#displaySeptiembre" id="domingoQuince">
+    
+                                </div>
+                                <!-- DOMINGO 22 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVdos" role="button"
+                                    aria-expanded="false" aria-controls="domingoVdos">
+                                    22-9
+                                </a>
+                                <div class="collapse" data-parent="#displaySeptiembre" id="domingoVdos">
+    
+                                </div>
+                                <!-- DOMINGO 29 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVnueve" role="button"
+                                    aria-expanded="false" aria-controls="domingoVnueve">
+                                    29-9
+                                </a>
+                                <div class="collapse" data-parent="#displaySeptiembre" id="domingoVnueve">
+    
+                                </div>
+    
+    
                             </div>
-                            <!-- DOMINGO 8 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoOcho" role="button"
-                                aria-expanded="false" aria-controls="domingoOcho">
-                                8/9
-                            </a>
-                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoOcho">
-
+                        </div>
+                    </div>
+    
+                    <!-- COLAPSE OCTUBRE -->
+                    <div class="mx-auto text-center">
+    
+    
+                        <a class="titulo-principal" data-toggle="collapse" href="#fechasOctubre" role="button"
+                            aria-expanded="false" aria-controls="fechasOctubre">
+                            OCTUBRE
+                        </a>
+    
+    
+                        <div class="collapse" id="fechasOctubre" data-parent="#fixture">
+                            <div id="displayOctubre" class="">
+                                <!-- DOMINGO 6-10 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoSeis" role="button"
+                                    aria-expanded="false" aria-controls="domingoSeis">
+                                    6-10
+                                </a>
+                                <div class="collapse" data-parent="#displayOctubre" id="domingoSeis">
+    
+                                </div>
+                                <!-- DOMINGO 13 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoTrece" role="button"
+                                    aria-expanded="false" aria-controls="domingoTrece">
+                                    13-10
+                                </a>
+                                <div class="collapse" data-parent="#displayOctubre" id="domingoTrece">
+    
+                                </div>
+                                <!-- DOMINGO 20 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVeinte" role="button"
+                                    aria-expanded="false" aria-controls="domingoVeinte">
+                                    20-10
+                                </a>
+                                <div class="collapse" data-parent="#displayOctubre" id="domingoVeinte">
+    
+                                </div>
+                                <!-- DOMINGO 27 -->
+    
+                                <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVsiete" role="button"
+                                    aria-expanded="false" aria-controls="domingoVsiete">
+                                    27-10
+                                </a>
+                                <div class="collapse" data-parent="#displayOctubre" id="domingoVsiete">
+    
+                                </div>
+    
+    
                             </div>
-                            <!-- DOMINGO 15 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoQuince" role="button"
-                                aria-expanded="false" aria-controls="domingoQuin">
-                                15-9
-                            </a>
-                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoQuince">
-
+                        </div>
+    
+                    </div>
+    
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+    
+                                <!-- Modal body -->
+                                <div class="modal-body" id="body-data">
+    
+                                </div>
+    
                             </div>
-                            <!-- DOMINGO 22 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVdos" role="button"
-                                aria-expanded="false" aria-controls="domingoVdos">
-                                22-9
-                            </a>
-                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoVdos">
-
-                            </div>
-                            <!-- DOMINGO 29 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVnueve" role="button"
-                                aria-expanded="false" aria-controls="domingoVnueve">
-                                29-9
-                            </a>
-                            <div class="collapse" data-parent="#displaySeptiembre" id="domingoVnueve">
-
-                            </div>
-
-
                         </div>
                     </div>
                 </div>
+                <!-- Oculto por default, solo en land se ve. -->
+                <div id="fixture-land" class="ml-3 mt-3">
+                    
+                </div>
+                <br><br><br>
+            </div>
 
-                <!-- COLAPSE OCTUBRE -->
-                <div class="mx-auto text-center">
+        </div>
 
+        <!-- === FOROS === -->
+        <div id="foros">
+            <!-- Si no está conectado, te pide que te conectes. -->
+            <div id="login" class="d-flex flex-column justify-content-center mx-auto">
+                <h4>Debes estar conectado para ver este contenido.</h4>
 
-                    <a class="titulo-principal" data-toggle="collapse" href="#fechasOctubre" role="button"
-                        aria-expanded="false" aria-controls="fechasOctubre">
-                        OCTUBRE
-                    </a>
+                <button id="sign-in-button" class="btn shadow-sm mt-2">Conectarse</button>
+            </div>
+            
+            <!-- Todos los temas y comentarios. -->
+            <div id="post-container" class="hide">
 
-
-                    <div class="collapse" id="fechasOctubre" data-parent="#fixture">
-                        <div id="displayOctubre" class="">
-                            <!-- DOMINGO 6-10 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoSeis" role="button"
-                                aria-expanded="false" aria-controls="domingoSeis">
-                                6-10
-                            </a>
-                            <div class="collapse" data-parent="#displayOctubre" id="domingoSeis">
-
-                            </div>
-                            <!-- DOMINGO 13 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoTrece" role="button"
-                                aria-expanded="false" aria-controls="domingoTrece">
-                                13-10
-                            </a>
-                            <div class="collapse" data-parent="#displayOctubre" id="domingoTrece">
-
-                            </div>
-                            <!-- DOMINGO 20 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVeinte" role="button"
-                                aria-expanded="false" aria-controls="domingoVeinte">
-                                20-10
-                            </a>
-                            <div class="collapse" data-parent="#displayOctubre" id="domingoVeinte">
-
-                            </div>
-                            <!-- DOMINGO 27 -->
-
-                            <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVsiete" role="button"
-                                aria-expanded="false" aria-controls="domingoVsiete">
-                                27-10
-                            </a>
-                            <div class="collapse" data-parent="#displayOctubre" id="domingoVsiete">
-
-                            </div>
-
-
-                        </div>
-                    </div>
-
+                <div class="mt-3">
+                    <h4 class="create-post mx-auto text-center pb-1" data-toggle="modal" data-target="#crear-post">
+                        Añadir nuevo tema</h4>
                 </div>
 
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog modal-dialog-centered">
+                <div id="recent-posts-list">
+
+                </div>
+                <br><br><br>
+
+                <div class="modal" id="crear-post">
+                    <div class="modal-dialog">
                         <div class="modal-content">
 
-                            <!-- Modal body -->
-                            <div class="modal-body" id="body-data">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Nuevo tema</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <br>
-                                <div class="equipo-detalle">
-                                    <div class="text-center">
-                                        <p class="versus">TEAM 1</p>
-                                        <img class="img-club-detalle" src="./img/equipos/baroda.png" alt="">
-                                    </div>
-                                    <!-- <p class="versus">-</p> -->
-                                    <div class="text-center">
-                                        <p class="versus">TEAM 2</p>
-                                        <img class="img-club-detalle" src="./img/equipos/york.png" alt="">
-                                    </div>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="usr">Titulo:</label>
+                                    <input type="text" class="form-control" id="new-post-title">
                                 </div>
-                                <div class="equipo-info mt-4">
-                                    <h4>Lugar: La plaza.</h4>
-                                    <h4>Hora: 9.30 PM</h4>
-                                    <h4>Fecha: SEMPTIEMBRE 12</h4>
+                                <div class="form-group">
+                                    <label for="comment">Contenido:</label>
+                                    <textarea class="form-control" rows="5" id="new-post-message"></textarea>
                                 </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn shadow-sm" data-dismiss="modal"
+                                    id="add-post-btn">Agregar</button>
                             </div>
 
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
 
         <!-- === FOOTER NAV BAR === -->
@@ -368,30 +380,29 @@
 
         </div>
 
-
-    </div>
-
-    <script src="scripts/jquery-3.4.1.min.js"></script>
-    <script src="scripts/bootstrap.bundle.min.js"></script>
-    <script src="scripts/info.js"></script>
-    <script src="scripts/app.js"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyBk8Y3zaypPQieCHmlmGhl3yIpoldggxoQ",
-            authDomain: "soccer-nysl-app.firebaseapp.com",
-            databaseURL: "https://soccer-nysl-app.firebaseio.com",
-            projectId: "soccer-nysl-app",
-            storageBucket: "soccer-nysl-app.appspot.com",
-            messagingSenderId: "945053085201",
-            appId: "1:945053085201:web:145fdcf63a675ad6"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
+        <script src="scripts/jquery-3.4.1.min.js"></script>
+        <script src="scripts/bootstrap.bundle.min.js"></script>
+        <script src="scripts/info.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+        <script src="/__/firebase/6.3.1/firebase-auth.js"></script>
+        <script src="/__/firebase/6.3.1/firebase-database.js"></script>
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBk8Y3zaypPQieCHmlmGhl3yIpoldggxoQ",
+                authDomain: "soccer-nysl-app.firebaseapp.com",
+                databaseURL: "https://soccer-nysl-app.firebaseio.com",
+                projectId: "soccer-nysl-app",
+                storageBucket: "soccer-nysl-app.appspot.com",
+                messagingSenderId: "945053085201",
+                appId: "1:945053085201:web:145fdcf63a675ad6"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/app.js"></script>
 </body>
 
 </html>

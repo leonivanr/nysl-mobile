@@ -2,10 +2,35 @@ $(document).ready(function () {
     const fixture = info.matches;
     const teams = info.teams;
     const locations = info.locations;
-
+    var mql = window.matchMedia("(orientation: portrait)");
+    displayPositions();
     displayMatches();
     displayTeams();
     displayLocations();
+    if (mql.matches) {
+        $('.detalle-partido').each(function () {
+            $(this).attr('data-toggle', 'modal');
+        })
+    } else {
+        $('.detalle-partido').each(function () {
+            $(this).attr('data-toggle', '');
+        })
+    }
+
+    // Add a media query change listener
+    mql.addListener(function (m) {
+        if (m.matches) {
+            $('#fixture-land').hide();
+            $('.detalle-partido').each(function () {
+                $(this).attr('data-toggle', 'modal');
+            })
+        } else {
+            $('#fixture-land').show();
+            $('.detalle-partido').each(function () {
+                $(this).attr('data-toggle', '');
+            })
+        }
+    });
     //Ir al id.
     $('.main a').click(function (e) {
         let aux = $(e.target);
@@ -17,14 +42,18 @@ $(document).ready(function () {
         }
         transition(proximaPagina);
         $('#nav-bar').addClass('nav-activo');
+        document.documentElement.scrollTop = 0;
 
     })
     //Volver al menu inicial
     $('#logo-link').click(function (e) {
-
-        transition('#index');
         $('#nav-bar').removeClass('nav-activo');
+        transition('#index');
 
+    })
+    $('#link-foro').click(function (e) {
+        transition('#foros');
+        $('#nav-bar').addClass('nav-activo');
     })
     //Detectar proxima pagina y ocultar.
     $('#nav-bar a').click(function (e) {
@@ -36,39 +65,61 @@ $(document).ready(function () {
             proximaPagina = e.target.hash;
         }
         transition(proximaPagina);
+        document.documentElement.scrollTop = 0;
+
     })
     $(document).on("click", ".detalle-partido", function () {
         let matchId = $(this).attr('id');
         let resultadoMatch = fixture.filter(x => x.matchID === matchId);
         let locationId = resultadoMatch[0].location_id;
         let locationMatch = locations.filter(x => x.id === locationId);
+        // If there are matches, we're in portrait
+        if (mql.matches) {
+            $("#body-data").html(
+                matchesOnPortrait(resultadoMatch, locationMatch, matchId)
+            )
+        } else {
+            $("#fixture-land").html(
+                matchesOnLandscape(resultadoMatch, locationMatch, matchId)
+            )
+        }
 
-        $("#body-data").html(
+    });
+    $(document).on("click", ".equipos-item", function () {
+        let teamId = $(this).attr('id');
+        let teamDetalle = teams.filter(x => x.team_id === teamId);
+        $("#eq-modal-data").html(
             `
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <br>
-            <div class="equipo-detalle">
-                <div class="text-center">
-                    <p class="versus-modal">${resultadoMatch[0].team1}</p>
-                    <img class="img-club-detalle" src="${resultadoMatch[0].team1img}" alt="">
+            <div class="d-flex flex-row align-items-center">
+                <div class="asd">
+                    <img class="modal-img" src="${teamDetalle[0].team_logo_img}" alt="">
                 </div>
-                <p class="versus-modal">VS</p>
-                <div class="text-center">
-                    <p class="versus-modal">${resultadoMatch[0].team2}</p>
-                    <img class="img-club-detalle" src="${resultadoMatch[0].team2img}" alt="">
+                <div class="ml-3 w-100">
+                    <div class="text-center">
+                    <h5>${teamDetalle[0].team_name}</h5>
+                    </div>
+                    <hr>
+                    <h5 class="">Posición: ${teamDetalle[0].team_position}º</h5>
+                    <h5 class="">Jugados: ${teamDetalle[0].matches_played}</h5>
+                    <h5 class="">Puntos: ${teamDetalle[0].points}</h5>
+                    <h5 class="">Ganados: ${teamDetalle[0].wins}</h5>
+                    <h5 class="">Empates: ${teamDetalle[0].draws}</h5>
+                    <h5 class="">Perdidos: ${teamDetalle[0].loses}</h5>
+                    <h5 class="">Diferencia de gol: ${teamDetalle[0].goal_difference}</h5>
                 </div>
-            </div>
-            <hr>
-            <div class="equipo-info mt-1">
-                <h5>Hora: <span class="modal-date">${resultadoMatch[0].time}</span></h5>
-                <h5>Fecha: <span class="modal-date">${resultadoMatch[0].fullDay}</span></h5>
-                <h5>Lugar: <span class="modal-date">${locationMatch[0].name}</span></h5>
-                <h5>Dirección: <span class="modal-date">${locationMatch[0].address}</span></h5>
-                <iframe class="border" src="${locationMatch[0].map}"></iframe>
             </div>
             `
         )
     });
+    $(document).on("click", ".foro-btn", function () {
+        temaId = $(this).attr('id');
+        transition('#foros');
+        recentPostsSection.innerHTML = '';
+        startDatabaseQueries();
+    });
+    // Find matches
 
     function transition(toPage) {
         var toPage = $(toPage);
@@ -122,7 +173,7 @@ $(document).ready(function () {
 
         teams.forEach(team => {
             $('#equipos').append(`
-            <div class="equipos-item mt-3 mx-auto">
+            <div id="${team.team_id}" class="equipos-item mt-3 mx-auto" data-toggle="modal" data-target="#equipos-modal">
                 <span class="equipos-titulo">${team.team_name}</span>
                 <img class="equipos-img" src="${team.team_logo_img}" alt="${team.team_name}">
             </div>
@@ -174,6 +225,28 @@ $(document).ready(function () {
 
     }
 
+    function displayPositions() {
+        teams.sort((a, b) => {
+            return a.team_position - b.team_position
+        });
+        teams.forEach(team => {
+            $('#tbl-puntaje').append(
+                `
+                <tr>
+                    <td class="pl-2"><img src="${team.team_logo_img}" class="img-tabla mr-2" alt="${team.team_name}">${team.team_name}</td>
+                    <td>${team.points}</td>
+                    <td>${team.matches_played}</td>
+                    <td>${team.wins}</td>
+                    <td>${team.draws}</td>
+                    <td>${team.loses}</td>
+                </tr>
+                `
+            )
+
+        })
+
+    }
+
     function showM(match) {
         return `
         <!-- 1er Partido -->
@@ -190,4 +263,71 @@ $(document).ready(function () {
         </div>
         `
     }
+
+    function matchesOnPortrait(resultadoMatch, locationMatch, matchId) {
+        return `
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <br>
+        <div class="equipo-detalle">
+            <div class="text-center">
+                <p class="versus-modal">${resultadoMatch[0].team1}</p>
+                <img class="img-club-detalle" src="${resultadoMatch[0].team1img}" alt="">
+            </div>
+            <p class="versus-modal">VS</p>
+            <div class="text-center">
+                <p class="versus-modal">${resultadoMatch[0].team2}</p>
+                <img class="img-club-detalle" src="${resultadoMatch[0].team2img}" alt="">
+            </div>
+        </div>
+        <hr>
+        <div class="equipo-info mt-1">
+            <div class="d-flex justify-content-between">
+                <h5>Hora: <span class="modal-date">${resultadoMatch[0].time}</span></h5>
+                <h5>Fecha: <span class="modal-date">${resultadoMatch[0].fullDay}</span></h5>
+            </div>
+            <h5>Lugar: <span class="modal-date">${locationMatch[0].name}</span></h5>
+            <h5 data-toggle="collapse" data-target="#iframe-map">Dirección: <u><span class="modal-date">${locationMatch[0].address}</span></u></h5>
+            <div id="iframe-map" class="embed-responsive embed-responsive-21by9 collapse">
+            <iframe class="border" src="${locationMatch[0].map}"></iframe>
+            </div>
+            <br>
+            <div id="tema-${matchId}" class="text-center foro-btn" data-dismiss="modal"><u>Ir al foro de este partido</u></div>
+        </div>
+        `
+    };
+
+    function matchesOnLandscape(resultadoMatch, locationMatch, matchId) {
+        return `
+
+        <div class="equipo-detalle">
+            <div class="text-center">
+                <p class="versus-modal">${resultadoMatch[0].team1}</p>
+                <img class="img-club-detalle" src="${resultadoMatch[0].team1img}" alt="">
+            </div>
+            <p class="versus-modal">VS</p>
+            <div class="text-center">
+                <p class="versus-modal">${resultadoMatch[0].team2}</p>
+                <img class="img-club-detalle" src="${resultadoMatch[0].team2img}" alt="">
+            </div>
+        </div>
+        <hr>
+        <div class="equipo-info mt-1">
+            <div class="d-flex justify-content-between">
+                <h5>Hora: <span class="modal-date">${resultadoMatch[0].time}</span></h5>
+                <h5>Fecha: <span class="modal-date">${resultadoMatch[0].fullDay}</span></h5>
+            </div>
+            <h5>Lugar: <span class="modal-date">${locationMatch[0].name}</span></h5>
+            <h5 data-toggle="collapse" data-target="#iframe-map">Dirección: <u><span class="modal-date">${locationMatch[0].address}</span></u></h5>
+            <div id="iframe-map" class="embed-responsive embed-responsive-21by9 collapse">
+            <iframe class="border" src="${locationMatch[0].map}"></iframe>
+            </div>
+            <br>
+            <div id="tema-${matchId}" class="text-center foro-btn" data-dismiss="modal"><u>Ir al foro de este partido</u></div>
+        </div>
+        `
+    };
+});
+$(window).on('load', function () {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");
 });

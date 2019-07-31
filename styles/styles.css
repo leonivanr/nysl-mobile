@@ -12,6 +12,24 @@ html {
     height: 100%;
     font-family: 'Oswald', sans-serif !important;
 }
+/*//////////////////////////*/
+/* LOADER*/
+/*//////////////////////////*/
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+    background: url(../img/loading.gif) center no-repeat var(--sec-bg-color);
+    background-size: 150px 150px;
+}
+/*//////////////////////////*/
+/* CONTENEDOR*/
+/*//////////////////////////*/
 .pages {
     position: relative;
 }
@@ -68,16 +86,23 @@ html {
 }
 .navbar {
     width: 100%;
+    padding-left: 7.5%; 
+    padding-right: 7.5%;
     background-color: var(--main-bg-color);
     box-shadow: 1px 1px 5px 0px rgba(15, 40, 32, 0.75);
 }
-
+.nav-container {
+    width: 85%; 
+}
 .sticky-off {
     top: -56px !important;
 }
 
 .nav-logo {
     height: 7vh;
+}
+.hide {
+    display:none;
 }
 /*//////////////////////////*/
 /* MENU INICIO*/
@@ -152,6 +177,7 @@ table.tabla-puntos th {
 table.tabla-puntos tbody td {
     font-size: 1em;
     line-height: 2em;
+    vertical-align: middle;
 }
 
 table.tabla-puntos thead {
@@ -160,10 +186,16 @@ table.tabla-puntos thead {
 
 table.tabla-puntos thead th {
     font-size: 1em;
-    line-height: 2em;
+    
     border-bottom: none;
     color: #FFFFFF;
 }
+.img-tabla {
+    width: 2em;
+    height: 2em;
+    margin-top: -3px !important;
+}
+
 
 
 /*///////////////////////////*/
@@ -247,6 +279,7 @@ table.tabla-puntos thead th {
 .modal-date {
     color: var(--main-bg-color);
 }
+
 /*//////////////////////////*/
 /* SEDES */
 /*///////////////////////////*/
@@ -307,75 +340,105 @@ table.tabla-puntos thead th {
     height: 9vh;
     margin: 0.5vh;
 }
+.modal-img {
+    height: 20vh;
+    width: 20vh;
+}
+
+/*//////////////////////////*/
+/* FOROS */
+/*//////////////////////////*/
+.caja-post {
+    background-color: #358A70;
+    color: #EBF0D9;
+    width: 90%;
+    margin: auto;
+    border-radius: 0.5em;
+}
+.caja-post-comentario {
+
+}
+#login {
+    width: 80%;
+    height: 80vh;
+}
+#sign-in-button {
+    background-color:#358A70;
+    color: #EBF0D9;
+}
+.comment-btn {
+    background-color:#358A70;
+    color: #EBF0D9;
+    border: 1px solid #EBF0D9
+}
+.create-post {
+    background-color:#358A70;
+    color: #EBF0D9;
+    width: 90%;
+    border-radius: 0.4em;
+    line-height: 1.3em;
+}
+#add-post-btn {
+    background-color:#358A70;
+    color: #EBF0D9;
 
 
+}
 /* LANDSCAPE */
+
 @media (orientation: landscape) {
     .container {
+        width: 100% !important;
         height: 100%;
-        padding: 13vh 1vh 13vh 1vh;
-        text-align: center;
     }
 
     .navbar {
-        height: 13vh;
+        height: 15vh;
     }
 
     .nav-logo {
         height: 10vh;
     }
-
+    .navbar-toggler{
+        font-size: 1rem;
+    }
     .index-item {
         width: 38%;
         height: 25vh;
     }
+    #fixture-land {
+        width: 49%;
+    }
+    #fixture-port {
+        width: 49%;
+    }
 
+    .modal-date {
+        color: var(--text-color);
+        text-shadow: 1px 1px 1px #0F2820;
+    }
+    .fix-container {
+        width: 100% !important;
+        display: flex;
+    
+    }
     #img-ranking {
         height: 25vh;
     }
-
-    h3 {
-        line-height: 25vh;
-        font-size: 1em;
+    .main-item {
+        width: 50% !important;
     }
-
-    .item-1 {
-        top: 22%;
-        left: 10%;
+    .sedes-item {
+        width: 60% !important;
     }
-
-    .item-2 {
-        top: 60%;
-        left: 10%;
-    }
-
-    .item-3 {
-        top: 22%;
-        left: 54%;
-    }
-
-    .item-4 {
-        top: 60%;
-        left: 54%;
-    }
-
+    
     .footer-nav-item {
         height: 13vh;
     }
-
-    .fixture-partido {
-        margin: auto;
+    .equipos-item {
+        width: 60%;
     }
-
-    #land-fixture {
-        margin-top: 3vh;
-        width: 45%;
-        text-align: center;
-        float: left;
-    }
-
-    #land-fixture-detalle {
-        width: 45%;
-        float: right;
+    .item {
+        height: 7vh;
     }
 }
