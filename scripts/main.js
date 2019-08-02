@@ -72,12 +72,14 @@ function createPostElement(postId, title, text, author, authorId, authorPic) {
     `
     <div id="${postId}" class="caja-post mt-2 p-2 shadow-sm">
       <h4 class="caja-post-titulo">${title}</h4>
-      <p class="caja-post-comentario">${text}</p>
+      <hr class="mt-0 mb-1">
+      <p class="caja-post-comentario mb-2">${text}</p>
+      <hr class="mt-0 mb-2">
       <div class="d-flex justify-content-between">
           <h6 class="left">Por ${author}</h6>
-          <h6 class="right" data-toggle="collapse" data-target="#post${postId}">Comentarios (0)</h6>
+          <h6 class="right" data-toggle="collapse" data-target="#post${postId}">Comentarios<i class="ml-1 fas fa-caret-down"></i></h6>
       </div>
-      <div id="post${postId}" class="collapse">
+      <div id="post${postId}" class="collapse" data-parent="#recent-posts-list">
         <div class="form-group mt-1 form-comment">
           <input type="text" class="form-control" id="cp${postId}" placeholder="Comentar...">
           <button type="button" class="btn mx-auto comment-btn w-100 mt-1">Agregar comentario</button>
@@ -108,8 +110,8 @@ function createCommentElement(text, author) {
     `
     <div class="caja-comentario px-1">
       <hr>
-      <h6>${author} dijo:</h6>
-      <p>${text}</p>
+      <h6 class="tx-p">${author} dijo:</h6>
+      <p class="pl-1">${text}</p>
     </div>
     `
   return html;
@@ -236,7 +238,30 @@ function newPostForCurrentUser(title, text) {
   });
   // [END single_value_read]
 }
-
+function transition(toPage) {
+  var toPage = $(toPage);
+  var fromPage = $('.pages .activo');
+  if (toPage.hasClass('activo') || toPage === fromPage) {
+      return;
+  }
+  toPage
+      .addClass('activo fade in')
+      .one('webkitAnimationEnd animationend', function () {
+          fromPage.removeClass('activo fade out');
+          toPage.removeClass('fade in');
+      })
+  fromPage.addClass('fade out');
+}
+function addMessage() {
+  $('.fix-container').prepend(
+      `
+      <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Elige un partido para entrar al tema.
+      </div>
+      `
+  )
+}
 /**
  * Creates a new comment in DB for a giving post.
  */
@@ -261,6 +286,9 @@ window.addEventListener('load', function () {
   signInButtonDos.addEventListener('click', function () {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
+    transition('#fixture');
+    addMessage();
+    $('#nav-bar').addClass('nav-activo');
   });
 
   // Bind Sign out button.

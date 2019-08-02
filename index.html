@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/main.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link rel="shortcut icon" sizes="196x196" href="img/icon-homescreen.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/icon-homescreen.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/icon-homescreen.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icon-homescreen.png">
     <link rel="icon" href="img/icon-homescreen.png">
     <title>NYSL</title>
 </head>
@@ -76,7 +79,7 @@
         </div>
 
         <!-- === POSICIONES === -->
-        <div id="posiciones" >
+        <div id="posiciones">
             <div class="container">
 
                 <br>
@@ -158,9 +161,10 @@
         </div>
 
         <!-- === FIXTURE === -->
-        <div id="fixture" >
+        <div id="fixture">
             <!-- FIXTURE PRINCIPAL -->
             <div class="container mt-4 fix-container">
+
 
                 <div id="fixture-port">
                     <!-- COLAPSE SEPTIEMPRE -->
@@ -169,131 +173,131 @@
                             aria-expanded="true" aria-controls="fechasSeptiembre">
                             SEPTIEMBRE
                         </a>
-    
+
                         <div class="collapse show" id="fechasSeptiembre" data-parent="#fixture">
                             <div id="displaySeptiembre" class="">
                                 <!-- DOMINGO 1 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoUno" role="button"
                                     aria-expanded="false" aria-controls="domingoUno">
                                     1/9
                                 </a>
                                 <div class="collapse show" data-parent="#displaySeptiembre" id="domingoUno">
-    
+
                                 </div>
                                 <!-- DOMINGO 8 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoOcho" role="button"
                                     aria-expanded="false" aria-controls="domingoOcho">
                                     8/9
                                 </a>
                                 <div class="collapse" data-parent="#displaySeptiembre" id="domingoOcho">
-    
+
                                 </div>
                                 <!-- DOMINGO 15 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoQuince" role="button"
                                     aria-expanded="false" aria-controls="domingoQuin">
                                     15-9
                                 </a>
                                 <div class="collapse" data-parent="#displaySeptiembre" id="domingoQuince">
-    
+
                                 </div>
                                 <!-- DOMINGO 22 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVdos" role="button"
                                     aria-expanded="false" aria-controls="domingoVdos">
                                     22-9
                                 </a>
                                 <div class="collapse" data-parent="#displaySeptiembre" id="domingoVdos">
-    
+
                                 </div>
                                 <!-- DOMINGO 29 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVnueve" role="button"
                                     aria-expanded="false" aria-controls="domingoVnueve">
                                     29-9
                                 </a>
                                 <div class="collapse" data-parent="#displaySeptiembre" id="domingoVnueve">
-    
+
                                 </div>
-    
-    
+
+
                             </div>
                         </div>
                     </div>
-    
+
                     <!-- COLAPSE OCTUBRE -->
                     <div class="mx-auto text-center">
-    
-    
+
+
                         <a class="titulo-principal" data-toggle="collapse" href="#fechasOctubre" role="button"
                             aria-expanded="false" aria-controls="fechasOctubre">
                             OCTUBRE
                         </a>
-    
-    
+
+
                         <div class="collapse" id="fechasOctubre" data-parent="#fixture">
                             <div id="displayOctubre" class="">
                                 <!-- DOMINGO 6-10 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoSeis" role="button"
                                     aria-expanded="false" aria-controls="domingoSeis">
                                     6-10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoSeis">
-    
+
                                 </div>
                                 <!-- DOMINGO 13 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoTrece" role="button"
                                     aria-expanded="false" aria-controls="domingoTrece">
                                     13-10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoTrece">
-    
+
                                 </div>
                                 <!-- DOMINGO 20 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVeinte" role="button"
                                     aria-expanded="false" aria-controls="domingoVeinte">
                                     20-10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoVeinte">
-    
+
                                 </div>
                                 <!-- DOMINGO 27 -->
-    
+
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVsiete" role="button"
                                     aria-expanded="false" aria-controls="domingoVsiete">
                                     27-10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoVsiete">
-    
+
                                 </div>
-    
-    
+
+
                             </div>
                         </div>
-    
+
                     </div>
-    
+
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-    
+
                                 <!-- Modal body -->
                                 <div class="modal-body" id="body-data">
-    
+
                                 </div>
-    
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Oculto por default, solo en land se ve. -->
                 <div id="fixture-land" class="ml-3 mt-3">
-                    
+
                 </div>
                 <br><br><br>
             </div>
@@ -301,23 +305,94 @@
         </div>
 
         <!-- === FOROS === -->
-        <div id="foros">
+        <div id="foros" >
             <!-- Si no está conectado, te pide que te conectes. -->
-            <div id="login" class="d-flex flex-column justify-content-center mx-auto">
+            <div id="login" class="d-flex flex-column justify-content-center mx-auto hide">
                 <h4>Debes estar conectado para ver este contenido.</h4>
 
                 <button id="sign-in-button" class="btn shadow-sm mt-2">Conectarse</button>
             </div>
-            
-            <!-- Todos los temas y comentarios. -->
-            <div id="post-container" class="hide">
 
-                <div class="mt-3">
+
+
+            <!-- Todos los temas y comentarios. -->
+            <div id="post-container" class="">
+
+                <div id="foro-t">
+
+                </div>
+
+                <div class="mt-2">
                     <h4 class="create-post mx-auto text-center pb-1" data-toggle="modal" data-target="#crear-post">
                         Añadir nuevo tema</h4>
                 </div>
 
+
+
                 <div id="recent-posts-list">
+                    <div id="${postId}" class="caja-post mt-2 p-2 shadow-sm">
+                        <h4 class="caja-post-titulo">Prohibido</h4>
+                        <hr class="mt-0 mb-1">
+                        <p class="caja-post-comentario mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                        <hr class="mt-0 mb-2">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="left">Por Leon</h6>
+                            <h6 class="right" data-toggle="collapse" data-target="#postA">Comentarios<i
+                                    class="ml-1 fas fa-caret-down"></i></h6>
+                        </div>
+                        <div id="postA" class="collapse" data-parent="#recent-posts-list">
+                            <div class="form-group mt-1 form-comment">
+                                <input type="text" class="form-control" id="cp${postId}" placeholder="Comentar...">
+                                <button type="button" class="btn mx-auto comment-btn w-100 mt-1">Agregar
+                                    comentario</button>
+                            </div>
+                            <div id="ctn1234">
+                                <div class="caja-comentario px-1">
+                                    <hr>
+                                    <h6 class="tx-p">Leon dijo:</h6>
+                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                </div>
+                                <div class="caja-comentario px-1">
+                                    <hr>
+                                    <h6 class="tx-p">Ale dijo:</h6>
+                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="${postId}" class="caja-post mt-2 p-2 shadow">
+                        <h4 class="caja-post-titulo">Prohibido</h4>
+                        <hr class="mt-0 mb-1">
+                        <p class="caja-post-comentario mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                        <hr class="mt-0 mb-2">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="left">Por Leon</h6>
+                            <h6 class="right" data-toggle="collapse" data-target="#postB">Comentarios<i
+                                    class="ml-1 fas fa-caret-down"></i></h6>
+                        </div>
+                        <div id="postB" class="collapse" data-parent="#recent-posts-list">
+                            <div class="form-group mt-1 form-comment">
+                                <input type="text" class="form-control" id="cp${postId}" placeholder="Comentar...">
+                                <button type="button" class="btn mx-auto comment-btn w-100 mt-1">Agregar
+                                    comentario</button>
+                            </div>
+                            <div id="ctn1234">
+                                <div class="caja-comentario px-1">
+                                    <hr>
+                                    <h6 class="tx-p">Leon dijo:</h6>
+                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                </div>
+                                <div class="caja-comentario px-1">
+                                    <hr>
+                                    <h6 class="tx-p">Ale dijo:</h6>
+                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <br><br><br>

@@ -3,8 +3,14 @@
     --sec-bg-color: #77BF98;
     --main-shadow: #0F2820;
     --text-color: #EBF0D9;
-}
 
+}
+.tx-p{
+    color: var(--main-shadow)
+}
+.tx-s{
+    color: var(--sec-bg-color);
+}
 body,
 html {
     background-color: var(--sec-bg-color) !important;
@@ -12,55 +18,77 @@ html {
     height: 100%;
     font-family: 'Oswald', sans-serif !important;
 }
+
 /*//////////////////////////*/
 /* LOADER*/
 /*//////////////////////////*/
-.no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.no-js #loader {
+    display: none;
+}
+
+.js #loader {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 0;
+}
+
 .se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
     background: url(../img/loading.gif) center no-repeat var(--sec-bg-color);
     background-size: 150px 150px;
 }
+
 /*//////////////////////////*/
 /* CONTENEDOR*/
 /*//////////////////////////*/
 .pages {
     position: relative;
 }
+
 .pages>div {
     display: none;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
 }
 
 .pages>div.activo {
     display: block !important;
 }
-.in, .out {
+
+.in,
+.out {
     animation-timing-function: ease-in-out;
     --webkit-animation-timing-function: ease-in-out;
-    animation-duration: 300ms;
+    animation-duration: 500ms;
     --webkit-animation-duration: 500ms;
 }
+
 .fade.in {
     --webkit-animation-name: fade-in;
     animation-name: fade-in;
     z-index: 10;
 }
+
 .fade.out {
     z-index: 0;
 }
+
 @keyframes fade-in {
-    from { opacity: 0;}
-    to { opacity : 1;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .nav-activo {
@@ -81,19 +109,23 @@ html {
 .m-nav {
     margin-bottom: 15vh !important;
 }
+
 .p-nav {
     padding-bottom: 15vh !important;
 }
+
 .navbar {
     width: 100%;
-    padding-left: 7.5%; 
+    padding-left: 7.5%;
     padding-right: 7.5%;
     background-color: var(--main-bg-color);
     box-shadow: 1px 1px 5px 0px rgba(15, 40, 32, 0.75);
 }
+
 .nav-container {
-    width: 85%; 
+    width: 85%;
 }
+
 .sticky-off {
     top: -56px !important;
 }
@@ -101,9 +133,11 @@ html {
 .nav-logo {
     height: 7vh;
 }
+
 .hide {
-    display:none;
+    display: none;
 }
+
 /*//////////////////////////*/
 /* MENU INICIO*/
 /*//////////////////////////*/
@@ -143,6 +177,7 @@ h3 {
 .bg-main {
     background-color: var(--main-bg-color);
 }
+
 /*//////////////////////////*/
 /* BARRA DE NAVAGACIÓN FOOTER */
 /*//////////////////////////*/
@@ -186,10 +221,11 @@ table.tabla-puntos thead {
 
 table.tabla-puntos thead th {
     font-size: 1em;
-    
+
     border-bottom: none;
     color: #FFFFFF;
 }
+
 .img-tabla {
     width: 2em;
     height: 2em;
@@ -211,7 +247,7 @@ table.tabla-puntos thead th {
     font-size: 1.2em;
     line-height: 7vh;
     text-shadow: 1px 1px 1px #0F2820;
-    margin-bottom:0;
+    margin-bottom: 0;
 }
 
 .fixture-partido {
@@ -228,14 +264,16 @@ table.tabla-puntos thead th {
     text-align: center;
 
 }
+
 .subtitulo-fecha {
     display: block;
     color: var(--main-bg-color);
     font-size: 1.5em;
 }
+
 .detalle-partido-container {
     margin: 2vh 0;
-    border:1px solid #358A70;
+    border: 1px solid #358A70;
     border-radius: 0.5em;
 }
 
@@ -243,6 +281,11 @@ table.tabla-puntos thead th {
     text-decoration: none;
     color: var(--text-color);
 }
+
+h5 {
+    font-size: 1rem;
+}
+
 /*//////////////////////////*/
 /* FIXTURE DETALLE */
 /*//////////////////////////*/
@@ -269,16 +312,28 @@ table.tabla-puntos thead th {
 
 .partido-subtitulo {
     color: var(--text-color);
-    text-shadow: 1px 1px 1px #0F2820;
+    text-shadow: 1px 1px 1px var(--main-shadow);
 }
+
 .versus-modal {
     font-size: 1.2em;
     line-height: 7vh;
-    margin-bottom:0;
+    margin-bottom: 0;
 }
+
 .modal-date {
     color: var(--main-bg-color);
 }
+
+.foro-btn {
+    font-size: 1.20rem;
+}
+#iframe-map{
+    border-radius: 0.5em;
+    border: 1px solid var(--main-shadow);
+}
+
+
 
 /*//////////////////////////*/
 /* SEDES */
@@ -287,6 +342,7 @@ table.tabla-puntos thead th {
     width: 100%;
     height: 80vh !important;
 }
+
 .modal-content {
     background-color: var(--text-color);
     color: #0F2820;
@@ -340,6 +396,7 @@ table.tabla-puntos thead th {
     height: 9vh;
     margin: 0.5vh;
 }
+
 .modal-img {
     height: 20vh;
     width: 20vh;
@@ -355,34 +412,42 @@ table.tabla-puntos thead th {
     margin: auto;
     border-radius: 0.5em;
 }
-.caja-post-comentario {
 
-}
 #login {
     width: 80%;
     height: 80vh;
 }
+
 #sign-in-button {
-    background-color:#358A70;
+    background-color: #358A70;
     color: #EBF0D9;
 }
+
 .comment-btn {
-    background-color:#358A70;
+    background-color: #358A70;
     color: #EBF0D9;
     border: 1px solid #EBF0D9
 }
+
 .create-post {
-    background-color:#358A70;
+    background-color: #358A70;
     color: #EBF0D9;
     width: 90%;
     border-radius: 0.4em;
     line-height: 1.3em;
 }
+
 #add-post-btn {
-    background-color:#358A70;
+    background-color: #358A70;
     color: #EBF0D9;
 
 
+}
+.w80{
+    width:90%;
+}
+.foro-ctn{
+    border-bottom: 2px solid var(--main-bg-color) !important;
 }
 /* LANDSCAPE */
 
@@ -399,16 +464,20 @@ table.tabla-puntos thead th {
     .nav-logo {
         height: 10vh;
     }
-    .navbar-toggler{
+
+    .navbar-toggler {
         font-size: 1rem;
     }
+
     .index-item {
         width: 38%;
         height: 25vh;
     }
+
     #fixture-land {
         width: 49%;
     }
+
     #fixture-port {
         width: 49%;
     }
@@ -417,27 +486,33 @@ table.tabla-puntos thead th {
         color: var(--text-color);
         text-shadow: 1px 1px 1px #0F2820;
     }
+
     .fix-container {
         width: 100% !important;
         display: flex;
-    
+
     }
+
     #img-ranking {
         height: 25vh;
     }
+
     .main-item {
         width: 50% !important;
     }
+
     .sedes-item {
         width: 60% !important;
     }
-    
+
     .footer-nav-item {
         height: 13vh;
     }
+
     .equipos-item {
         width: 60%;
     }
+
     .item {
         height: 7vh;
     }

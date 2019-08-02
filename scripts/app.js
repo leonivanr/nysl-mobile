@@ -115,26 +115,16 @@ $(document).ready(function () {
     });
     $(document).on("click", ".foro-btn", function () {
         temaId = $(this).attr('id');
+        let cleanMatchId = temaId.match(/\d/g).join("");
+        let match = fixture.filter(x => x.matchID === cleanMatchId);
+        updateForumMatch(match[0]);
         transition('#foros');
         recentPostsSection.innerHTML = '';
         startDatabaseQueries();
     });
     // Find matches
 
-    function transition(toPage) {
-        var toPage = $(toPage);
-        var fromPage = $('.pages .activo');
-        if (toPage.hasClass('activo') || toPage === fromPage) {
-            return;
-        }
-        toPage
-            .addClass('activo fade in')
-            .one('webkitAnimationEnd animationend', function () {
-                fromPage.removeClass('activo fade out');
-                toPage.removeClass('fade in');
-            })
-        fromPage.addClass('fade out');
-    }
+    
 
     function displayMatches() {
 
@@ -264,6 +254,22 @@ $(document).ready(function () {
         `
     }
 
+    function updateForumMatch(match) {
+    $('#foro-t').html('');
+    $('#foro-t').prepend(`
+        <div class="detalle-partido-container mx-auto w80">
+        <div id="${match.matchID}" class="detalle-partido">
+            <div class="fixture-partido">
+                <img class="img-club left" src="${match.team1img}" alt="${match.team1}">
+                <p class="versus">${match.team1}</p>
+                <p class="versus">-</p>
+                <p class="versus">${match.team2}</p>
+                <img id="foro-titulo-img-t2" class="img-club right" src="${match.team2img}" alt="${match.team2}">
+            </div>
+        </div>
+    </div>`)
+    }
+
     function matchesOnPortrait(resultadoMatch, locationMatch, matchId) {
         return `
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -286,12 +292,13 @@ $(document).ready(function () {
                 <h5>Fecha: <span class="modal-date">${resultadoMatch[0].fullDay}</span></h5>
             </div>
             <h5>Lugar: <span class="modal-date">${locationMatch[0].name}</span></h5>
-            <h5 data-toggle="collapse" data-target="#iframe-map">Dirección: <u><span class="modal-date">${locationMatch[0].address}</span></u></h5>
-            <div id="iframe-map" class="embed-responsive embed-responsive-21by9 collapse">
-            <iframe class="border" src="${locationMatch[0].map}"></iframe>
+            <h5 data-toggle="collapse" data-target="#iframe-map">Dirección: <span class="modal-date">${locationMatch[0].address}</span> <i class="ml-1 fas fa-caret-down"></i></h5>
+            <br>
+            <div id="iframe-map" class="shadow-sm embed-responsive embed-responsive-21by9 collapse">
+            <iframe src="${locationMatch[0].map}"></iframe>
             </div>
             <br>
-            <div id="tema-${matchId}" class="text-center foro-btn" data-dismiss="modal"><u>Ir al foro de este partido</u></div>
+            <div id="tema-${matchId}" class="text-center foro-btn" data-dismiss="modal"><u>Ir al foro de este partido</u> </div>
         </div>
         `
     };
