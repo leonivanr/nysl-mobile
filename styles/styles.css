@@ -5,12 +5,32 @@
     --text-color: #EBF0D9;
 
 }
-.tx-p{
+
+/* /TODO:/ */
+.tx-p {
     color: var(--main-shadow)
 }
-.tx-s{
+
+.tx-s {
     color: var(--sec-bg-color);
 }
+
+.tx-wh {
+    color: var(--text-color);
+}
+
+.bg-p {
+    color: var(--main-bg-color)
+}
+
+.bg-s {
+    color: var(--sec-bg-color);
+}
+
+.bg-t {
+    color: var(--text-color);
+}
+
 body,
 html {
     background-color: var(--sec-bg-color) !important;
@@ -22,18 +42,8 @@ html {
 /*//////////////////////////*/
 /* LOADER*/
 /*//////////////////////////*/
-.no-js #loader {
-    display: none;
-}
 
-.js #loader {
-    display: block;
-    position: absolute;
-    left: 100px;
-    top: 0;
-}
-
-.se-pre-con {
+.pre-loader {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -63,16 +73,21 @@ html {
     display: block !important;
 }
 
-.in,
+/*//////////////////////////*/
+/* ANIMACIONES*/
+/*//////////////////////////*/
+
+.in {
+    animation-timing-function: ease-in-out;
+    animation-duration: 600ms;
+}
+
 .out {
     animation-timing-function: ease-in-out;
-    --webkit-animation-timing-function: ease-in-out;
-    animation-duration: 500ms;
-    --webkit-animation-duration: 500ms;
+    animation-duration: 200ms;
 }
 
 .fade.in {
-    --webkit-animation-name: fade-in;
     animation-name: fade-in;
     z-index: 10;
 }
@@ -91,28 +106,10 @@ html {
     }
 }
 
-.nav-activo {
-    display: block !important;
-}
-
-.index-pd {
-    padding-top: 56px !important;
-}
-
-.index-mg {
-    margin-top: 56px !important;
-}
 
 /*//////////////////////////*/
 /* TOP NAV BAR */
 /*//////////////////////////*/
-.m-nav {
-    margin-bottom: 15vh !important;
-}
-
-.p-nav {
-    padding-bottom: 15vh !important;
-}
 
 .navbar {
     width: 100%;
@@ -187,11 +184,11 @@ h3 {
     bottom: 0;
     z-index: 100;
     width: 100%;
-    box-shadow: -1px -1px 5px 0px rgba(15, 40, 32, 0.75);
+    box-shadow: -1px -1px 5px 0px var(--main-shadow);
 }
 
 .footer-nav-item {
-    background-color: #358A70;
+    background-color: var(--main-bg-color);
     width: 25%;
     height: 10vh;
 }
@@ -200,9 +197,14 @@ h3 {
     height: 5vh;
 }
 
+.nav-activo {
+    display: block !important;
+}
+
 /*//////////////////////////*/
 /* TABLA POSICIONES */
 /*//////////////////////////*/
+
 table.tabla-puntos td,
 table.tabla-puntos th {
     border-top: 1px solid var(--main-bg-color);
@@ -221,9 +223,9 @@ table.tabla-puntos thead {
 
 table.tabla-puntos thead th {
     font-size: 1em;
-
     border-bottom: none;
-    color: #FFFFFF;
+    color: var(--text-color);
+    font-weight: lighter;
 }
 
 .img-tabla {
@@ -231,8 +233,6 @@ table.tabla-puntos thead th {
     height: 2em;
     margin-top: -3px !important;
 }
-
-
 
 /*///////////////////////////*/
 /* FIXTURE */
@@ -246,7 +246,7 @@ table.tabla-puntos thead th {
 .versus {
     font-size: 1.2em;
     line-height: 7vh;
-    text-shadow: 1px 1px 1px #0F2820;
+    text-shadow: 0px 1px 2px var(--main-shadow);
     margin-bottom: 0;
 }
 
@@ -262,7 +262,6 @@ table.tabla-puntos thead th {
     color: var(--main-shadow);
     font-size: 2em;
     text-align: center;
-
 }
 
 .subtitulo-fecha {
@@ -273,7 +272,7 @@ table.tabla-puntos thead th {
 
 .detalle-partido-container {
     margin: 2vh 0;
-    border: 1px solid #358A70;
+    border: 1px solid var(--main-bg-color);
     border-radius: 0.5em;
 }
 
@@ -328,12 +327,11 @@ h5 {
 .foro-btn {
     font-size: 1.20rem;
 }
-#iframe-map{
+
+#iframe-map {
     border-radius: 0.5em;
     border: 1px solid var(--main-shadow);
 }
-
-
 
 /*//////////////////////////*/
 /* SEDES */
@@ -345,7 +343,7 @@ h5 {
 
 .modal-content {
     background-color: var(--text-color);
-    color: #0F2820;
+    color: var(--main-shadow);
 }
 
 .sedes-item {
@@ -358,7 +356,7 @@ h5 {
     border-radius: 0.5em;
     box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
     color: var(--text-color);
-    text-shadow: 1px 1px 1px #0F2820;
+    text-shadow: 1px 1px 1px var(--main-shadow);
     cursor: pointer;
 }
 
@@ -381,7 +379,7 @@ h5 {
     border-radius: 0.5em;
     box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
     color: var(--text-color);
-    text-shadow: 1px 1px 1px #0F2820;
+    text-shadow: 1px 1px 1px var(--main-shadow);
 }
 
 .equipos-titulo {
@@ -412,43 +410,59 @@ h5 {
     margin: auto;
     border-radius: 0.5em;
 }
-
+.caja-post-comentario{
+    text-shadow: 0px 0px 1px var(--main-shadow);
+}
+.caja-post-titulo{
+    text-shadow: 0px 0px 0px var(--main-shadow);
+}
 #login {
     width: 80%;
     height: 80vh;
 }
 
 #sign-in-button {
-    background-color: #358A70;
-    color: #EBF0D9;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
 }
 
 .comment-btn {
     background-color: #358A70;
     color: #EBF0D9;
-    border: 1px solid #EBF0D9
+    border: 1px solid var(--sec-bg-color);
+    text-shadow: 0px 0px 1px var(--main-shadow);
 }
 
 .create-post {
-    background-color: #358A70;
-    color: #EBF0D9;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
     width: 90%;
-    border-radius: 0.4em;
-    line-height: 1.3em;
+    border-radius: 0.5rem;
+    line-height: 1.5em;
 }
 
 #add-post-btn {
-    background-color: #358A70;
-    color: #EBF0D9;
-
-
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
 }
-.w80{
-    width:90%;
+
+.w80 {
+    width: 90%;
 }
-.foro-ctn{
+
+.foro-ctn {
     border-bottom: 2px solid var(--main-bg-color) !important;
 }
+.cm-autor {
+    text-shadow: none;
+}
+.comentario{
+    text-shadow: 0px 0px 1px var(--main-shadow);
+}
+h6 {
+    text-shadow: 0px 0px 1px var(--main-shadow);
+}
+
 /* LANDSCAPE */
 
 @media (orientation: landscape) {

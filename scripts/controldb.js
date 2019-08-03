@@ -1,20 +1,4 @@
-/**
- * Copyright 2015 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 'use strict';
-
 
 // Shortcuts to DOM Elements.
 var titleInput = document.getElementById('new-post-title');
@@ -34,21 +18,19 @@ var addPostButton = document.getElementById('add-post-btn');
 var recentPostsSection = document.getElementById('recent-posts-list');
 var listeningFirebaseRefs = [];
 var temaId;
-
+var currentUID;
 
 /**
- * Saves a new post to the Firebase DB.
+ * Nuevo post /comentario en DB.
  */
-// [START write_fan_out]
-function writeNewPost(uid, username, picture, title, body) {
+
+function writeNewPost(uid, username, title, body) {
   // A post entry.
   var postData = {
     author: username,
     uid: uid,
     body: body,
     title: title,
-    starCount: 0,
-    authorPic: picture
   };
 
   // Get a key for a new Post.
@@ -57,16 +39,22 @@ function writeNewPost(uid, username, picture, title, body) {
   // Write the new post's data simultaneously in the posts list and the user's post list.
   var updates = {};
   updates['/posts/' + temaId + '/' + newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + temaId + '/' + newPostKey] = postData;
-
+  
   return firebase.database().ref().update(updates);
 }
-// [END write_fan_out]
+
+function createNewComment(postId, username, text) {
+  firebase.database().ref('comments/' + temaId + '/' + postId).push({
+    text: text,
+    author: username,
+    postId: postId
+  });
+}
 
 /**
- * Creates a post element.
+ * Plantilla HTML para agregar nuevo post/comentario.
  */
-function createPostElement(postId, title, text, author, authorId, authorPic) {
+function createPostElement(postId, title, text, author) {
 
   var html =
     `
@@ -82,7 +70,7 @@ function createPostElement(postId, title, text, author, authorId, authorPic) {
       <div id="post${postId}" class="collapse" data-parent="#recent-posts-list">
         <div class="form-group mt-1 form-comment">
           <input type="text" class="form-control" id="cp${postId}" placeholder="Comentar...">
-          <button type="button" class="btn mx-auto comment-btn w-100 mt-1">Agregar comentario</button>
+          <button type="button" class="btn mx-auto shadow-sm comment-btn w-100 mt-2">Agregar comentario</button>
         </div>
         <div id="ctn${postId}">
         </div>
@@ -91,94 +79,110 @@ function createPostElement(postId, title, text, author, authorId, authorPic) {
     `
   return html;
 }
-/**
- * Writes a new comment for the given post in the DB.
- */
-function createNewComment(postId, username, text) {
-  firebase.database().ref('comments/' + temaId + '/' + postId).push({
-    text: text,
-    author: username,
-    postId: postId
-  });
-}
-/**
- * Creates a post element.
- */
+
 function createCommentElement(text, author) {
 
   var html =
     `
     <div class="caja-comentario px-1">
       <hr>
-      <h6 class="tx-p">${author} dijo:</h6>
-      <p class="pl-1">${text}</p>
+      <h6 class="tx-p cm-autor">${author} dijo:</h6>
+      <p class="pl-1 comentario">${text}</p>
     </div>
     `
   return html;
 }
 
 /**
- * Starts listening for new posts and populates posts lists.
+ * Inicio los listeners, y traigo los temas/comentarios ya creados de la DB.
  */
 function startDatabaseQueries() {
-  // [START recent_posts_query]
+  // Los temas se traen desde 'post/$iDdelCorrespondientePartido. EJ: 'post/108054'.
   const lastPostMatchRef = firebase.database().ref('posts/' + temaId).limitToLast(100);
+  // Los comentarios se traen desde 'comments/$iDdelCorrespondientePartido. EJ: 'comments/108054'.
   const commentsPostRef = firebase.database().ref('comments/' + temaId).limitToLast(100);
+  // Los comentarios se traen desde 'comments/$iDdelCorrespondientePartido. EJ: 'comments/108054'. 
+  // [LIMITADO A 1, PERO AL PARECER NO FUNCIONA.]
   const commentsLast = firebase.database().ref('comments/' + temaId).limitToLast(1);
-  // [END recent_posts_query]
 
+  // Traigo los post.
   var fetchPosts = function (postsRef) {
+    // Al iniciar el foro, trae todos los temas ($post), cuando se añade un nuevo post, gracias al listener que dejo al 
+    // finalizar la funcion, lo agrega también sin tener que reiniciar.
+    postsRef.on('child_added', function (post) {
+      // Data es un Objeto que contiene:
+      // 'post.key' = id del post.
+      // 'post.val().title' = titulo del post.
+      // 'post.val().body' = cuerpo del post.
+      // 'post.val().author' = creador del post.
+      $('#recent-posts-list').prepend(
+        // Paso esos datos como parametros para crear y añadir al html el post.
+        createPostElement(post.key, post.val().title, post.val().body, post.val().author)
+      );
 
-    postsRef.on('child_added', function (data) {
-      let author = data.val().author || 'Anonymous';
-      $('#recent-posts-list').prepend(createPostElement(data.key, data.val().title, data.val().body, author, data.val().uid, data.val().authorPic));
     });
 
   };
+
+  // Traigo los comentarios.
   var fetchComments = function (commentsR) {
+    //Solo al iniciar, y despues de haber traido los temas, trae los comentarios.
     commentsR.on('child_added', function (data) {
-      var comments = data.val();
-      for (let prop in comments) {
-        $('#ctn' + comments[prop].postId).prepend(createCommentElement(comments[prop].text, comments[prop].author));
+
+      var comentarios = data.val();
+      // Cada comentario está compuesto por 3 atributos:
+      for (let com in comentarios) {
+        // comentarios[com].postId = id del post al que pertenece.
+        // comentarios[com].text = contenido del post al que pertenece.
+        // comentarios[com].author = creador del post al que pertenece.
+
+        // Con 'ctn' + el id, busco en el html el post al que pertenece y lo añado.
+        $('#ctn' + comentarios[com].postId).prepend(createCommentElement(comentarios[com].text, comentarios[com].author));
+      
       }
     });
   };
-  
+
   // Fetching and displaying all posts of each sections.
   fetchPosts(lastPostMatchRef);
   fetchComments(commentsPostRef);
 
+  //Como tengo separados los comentarios por partido y no por tema, si uso child_added no me detecta nada, por ende tengo que
+  // escuchar por algun cambio que se produzca.
+  // ===============================================
+  // Esto es solo para los nuevos comentarios.
   commentsLast.on('child_changed', function (data) {
+
+    // Ver por qué me trae todos, cuando especifico que traiga solo el ultimo comentario añadido.
     var aux = [];
     let comments = data.val();
     let lastCom;
     for (let prop in comments) {
       aux.push(comments[prop]);
     }
+    // Saco el ultimo comentario que se agrego y lo pongo en el html.
     lastCom = aux.pop();
     $('#ctn' + lastCom.postId).prepend(createCommentElement(lastCom.text, lastCom.author));
   });
 
-  // Keep track of all Firebase refs we are listening to.
+  // Seguimos escuchando por algun comentario o tema nuevo.
   listeningFirebaseRefs.push(lastPostMatchRef);
   listeningFirebaseRefs.push(commentsLast);
 }
 
 /**
- * Writes the user's data to the database.
+ * Datos del usuario en la base de datos.
  */
-// [START basic_write]
-function writeUserData(userId, name, email, imageUrl) {
+function writeUserDataOnDB(userId, name, email) {
   firebase.database().ref('users/' + userId).set({
     username: name,
     email: email,
-    profile_picture: imageUrl
-  });
+      });
 }
-// [END basic_write]
 
 /**
- * Cleanups the UI and removes all Firebase listeners.
+ * Limpio los foros de los temas que añadi de la base de datos.
+ * Apago los listeners de post/comentarios..
  */
 function cleanupUi() {
   // Remove all previously displayed posts.
@@ -192,69 +196,70 @@ function cleanupUi() {
 }
 
 /**
- * The ID of the currently signed-in User. We keep track of this to detect Auth state change events that are just
- * programmatic token refresh but not a User status change.
- */
-var currentUID;
-
-/**
- * Triggers every time there is a change in the Firebase auth state (i.e. user signed-in or user signed out).
+ * Se dispara siempre que hay un cambio de el estado de la sesion. (Inicio o cierre.) 
  */
 function onAuthStateChanged(user) {
   // We ignore token refresh events.
   if (user && currentUID === user.uid) {
     return;
   }
-
   cleanupUi();
+
   if (user) {
+    // Escondo el div que pide que te loguees para ver contenido.
     $(loginSplash).addClass('hide');
+    // Escondo el boton de inicio de sesion.
     $(liLogin).addClass('hide');
+    // Muestro el botón de cerrar sesión.
     $(liLogout).removeClass('hide');
+
     $(postContainer).removeClass('hide');
+    // id para crear post y comentario (autor).
     currentUID = user.uid;
-    writeUserData(user.uid, user.displayName, user.email, user.photoURL);
+    writeUserDataOnDB(user.uid, user.displayName, user.email);
+
     startDatabaseQueries();
   } else {
     // Set currentUID to null.
     currentUID = null;
-
   }
 }
 
 /**
- * Creates a new post for the current user.
+ * Obtengo el nombre de usuario para agregar como parametro de autor en la base de datos.
  */
 function newPostForCurrentUser(title, text) {
-  // [START single_value_read]
+  
   var userId = firebase.auth().currentUser.uid;
+
   return firebase.database().ref('/users/' + userId).once('value').then(function (snapshot) {
     var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    // [START_EXCLUDE]
-    return writeNewPost(firebase.auth().currentUser.uid, username,
-      firebase.auth().currentUser.photoURL,
-      title, text);
-    // [END_EXCLUDE]
+    
+    return writeNewPost(firebase.auth().currentUser.uid, username,title, text);
+    
   });
-  // [END single_value_read]
+
+  
 }
+
 function transition(toPage) {
   var toPage = $(toPage);
   var fromPage = $('.pages .activo');
   if (toPage.hasClass('activo') || toPage === fromPage) {
-      return;
+    return;
   }
   toPage
-      .addClass('activo fade in')
-      .one('webkitAnimationEnd animationend', function () {
-          fromPage.removeClass('activo fade out');
-          toPage.removeClass('fade in');
-      })
+    .addClass('activo fade in')
+    .one('webkitAnimationEnd animationend', function () {
+      fromPage.removeClass('activo fade out');
+      toPage.removeClass('fade in');
+    })
   fromPage.addClass('fade out');
 }
+// Mensaje para cuando inicia sesion desde el menu desplegable.
 function addMessage() {
   $('.fix-container').prepend(
-      `
+    `
       <div class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       Elige un partido para entrar al tema.
@@ -263,12 +268,15 @@ function addMessage() {
   )
 }
 /**
- * Creates a new comment in DB for a giving post.
+ * Detecto el boton añadir nuevo comentario.
  */
 $(document).on("click", ".comment-btn", function () {
+  // 
   var postId = $(this).parents('.caja-post').attr('id');
   var commentInput = document.getElementById('cp' + postId);
-  if (commentInput === '') {
+  console.log('elemento: commentario: ', commentInput)
+  if (commentInput.value === '') {
+    console.log('Al parecer entra igual.')
     return;
   } else {
     createNewComment(postId, firebase.auth().currentUser.displayName, commentInput.value);
@@ -276,7 +284,7 @@ $(document).on("click", ".comment-btn", function () {
   }
 });
 
-// Bindings on load.
+
 window.addEventListener('load', function () {
   // Bind Sign in button.
   signInButton.addEventListener('click', function () {
@@ -303,8 +311,9 @@ window.addEventListener('load', function () {
   // Saves message on form submit.
   addPostButton.addEventListener('click', function () {
 
-    var title = titleInput.value;
-    var text = messageInput.value;
+    let title = titleInput.value;
+    let text = messageInput.value;
+
     if (text && title) {
       newPostForCurrentUser(title, text);
       messageInput.value = '';

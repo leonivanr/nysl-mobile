@@ -8,8 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link rel="shortcut icon" sizes="196x196" href="img/icon-homescreen.png">
     <link rel="apple-touch-icon" sizes="76x76" href="img/icon-homescreen.png">
@@ -20,10 +19,10 @@
 </head>
 
 <body>
-    <div class="se-pre-con"></div>
-    <!-- === TOP NAV BAR === -->
+    <div class="pre-loader"></div>
 
-    <nav class="navbar navbar-expand-md navbar-dark sticky-top">
+    <!-- === TOP NAV BAR === -->
+    <nav class="sticky-top navbar navbar-expand-md navbar-dark ">
 
         <a id="logo-link" href="#index"><img class="nav-logo" src="img/nysl_logo.png" alt="Logo"></a>
 
@@ -46,7 +45,7 @@
         </div>
     </nav>
 
-
+    <!-- === CONTENEDOR PAGINAS === -->
     <div class="pages">
 
         <!-- === PAGINA INICIO === -->
@@ -56,22 +55,22 @@
 
                 <a class="main-item mx-auto" href="#posiciones">
                     <h3>POSICIONES</h3>
-                    <img class="main-img" src="img/ranking.jpeg" alt="Posiciones">
+                    <img class="main-img" src="img/main/ranking.jpeg" alt="Posiciones">
                 </a>
 
                 <a class="main-item mx-auto" href="#fixture">
                     <h3>FIXTURE</h3>
-                    <img class="main-img" src="img/fixture.jpg" alt="Fixture">
+                    <img class="main-img" src="img/main/fixture.jpg" alt="Fixture">
                 </a>
 
                 <a class="main-item mx-auto" href="#sedes">
                     <h3>SEDES</h3>
-                    <img class="main-img" src="img/sedes.jpg" alt="Sedes">
+                    <img class="main-img" src="img/main/sedes.jpg" alt="Sedes">
                 </a>
 
                 <a class="main-item mx-auto" href="#equipos">
                     <h3>EQUIPOS</h3>
-                    <img class="main-img" src="img/team.jpg" alt="Equipos">
+                    <img class="main-img" src="img/main/team.jpg" alt="Equipos">
                 </a>
 
             </div>
@@ -79,7 +78,7 @@
         </div>
 
         <!-- === POSICIONES === -->
-        <div id="posiciones">
+        <div id="posiciones" >
             <div class="container">
 
                 <br>
@@ -158,10 +157,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- === FIXTURE === -->
-        <div id="fixture">
+        <div id="fixture" >
             <!-- FIXTURE PRINCIPAL -->
             <div class="container mt-4 fix-container">
 
@@ -305,94 +305,33 @@
         </div>
 
         <!-- === FOROS === -->
-        <div id="foros" >
+        <div id="foros">
+
             <!-- Si no está conectado, te pide que te conectes. -->
-            <div id="login" class="d-flex flex-column justify-content-center mx-auto hide">
+            <div id="login" class="d-flex flex-column justify-content-center mx-auto">
                 <h4>Debes estar conectado para ver este contenido.</h4>
 
                 <button id="sign-in-button" class="btn shadow-sm mt-2">Conectarse</button>
             </div>
 
-
-
             <!-- Todos los temas y comentarios. -->
-            <div id="post-container" class="">
+            <div id="post-container" class="hide">
 
+                <!-- Alerta cuando se inicia desde menu desplegable. -->
                 <div id="foro-t">
 
                 </div>
 
+                <!-- Crear post. -->
                 <div class="mt-2">
-                    <h4 class="create-post mx-auto text-center pb-1" data-toggle="modal" data-target="#crear-post">
-                        Añadir nuevo tema</h4>
+                    <h4 class="create-post shadow-sm mx-auto text-center pb-1" data-toggle="modal" data-target="#crear-post">
+                        Añadir nuevo tema
+                    </h4>
                 </div>
 
 
 
                 <div id="recent-posts-list">
-                    <div id="${postId}" class="caja-post mt-2 p-2 shadow-sm">
-                        <h4 class="caja-post-titulo">Prohibido</h4>
-                        <hr class="mt-0 mb-1">
-                        <p class="caja-post-comentario mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
-                        <hr class="mt-0 mb-2">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="left">Por Leon</h6>
-                            <h6 class="right" data-toggle="collapse" data-target="#postA">Comentarios<i
-                                    class="ml-1 fas fa-caret-down"></i></h6>
-                        </div>
-                        <div id="postA" class="collapse" data-parent="#recent-posts-list">
-                            <div class="form-group mt-1 form-comment">
-                                <input type="text" class="form-control" id="cp${postId}" placeholder="Comentar...">
-                                <button type="button" class="btn mx-auto comment-btn w-100 mt-1">Agregar
-                                    comentario</button>
-                            </div>
-                            <div id="ctn1234">
-                                <div class="caja-comentario px-1">
-                                    <hr>
-                                    <h6 class="tx-p">Leon dijo:</h6>
-                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                                <div class="caja-comentario px-1">
-                                    <hr>
-                                    <h6 class="tx-p">Ale dijo:</h6>
-                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="${postId}" class="caja-post mt-2 p-2 shadow">
-                        <h4 class="caja-post-titulo">Prohibido</h4>
-                        <hr class="mt-0 mb-1">
-                        <p class="caja-post-comentario mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
-                        <hr class="mt-0 mb-2">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="left">Por Leon</h6>
-                            <h6 class="right" data-toggle="collapse" data-target="#postB">Comentarios<i
-                                    class="ml-1 fas fa-caret-down"></i></h6>
-                        </div>
-                        <div id="postB" class="collapse" data-parent="#recent-posts-list">
-                            <div class="form-group mt-1 form-comment">
-                                <input type="text" class="form-control" id="cp${postId}" placeholder="Comentar...">
-                                <button type="button" class="btn mx-auto comment-btn w-100 mt-1">Agregar
-                                    comentario</button>
-                            </div>
-                            <div id="ctn1234">
-                                <div class="caja-comentario px-1">
-                                    <hr>
-                                    <h6 class="tx-p">Leon dijo:</h6>
-                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                                <div class="caja-comentario px-1">
-                                    <hr>
-                                    <h6 class="tx-p">Ale dijo:</h6>
-                                    <p class="pl-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <br><br><br>
@@ -455,29 +394,32 @@
 
         </div>
 
-        <script src="scripts/jquery-3.4.1.min.js"></script>
-        <script src="scripts/bootstrap.bundle.min.js"></script>
-        <script src="scripts/info.js"></script>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-        <script src="/__/firebase/6.3.1/firebase-auth.js"></script>
-        <script src="/__/firebase/6.3.1/firebase-database.js"></script>
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyBk8Y3zaypPQieCHmlmGhl3yIpoldggxoQ",
-                authDomain: "soccer-nysl-app.firebaseapp.com",
-                databaseURL: "https://soccer-nysl-app.firebaseio.com",
-                projectId: "soccer-nysl-app",
-                storageBucket: "soccer-nysl-app.appspot.com",
-                messagingSenderId: "945053085201",
-                appId: "1:945053085201:web:145fdcf63a675ad6"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-        </script>
-        <script src="scripts/main.js"></script>
-        <script src="scripts/app.js"></script>
+    </div>
+
+
+    <script src="scripts/addons/jquery-3.4.1.min.js"></script>
+    <script src="scripts/addons/bootstrap.bundle.min.js"></script>
+    <script src="scripts/info.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="/__/firebase/6.3.1/firebase-auth.js"></script>
+    <script src="/__/firebase/6.3.1/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBk8Y3zaypPQieCHmlmGhl3yIpoldggxoQ",
+            authDomain: "soccer-nysl-app.firebaseapp.com",
+            databaseURL: "https://soccer-nysl-app.firebaseio.com",
+            projectId: "soccer-nysl-app",
+            storageBucket: "soccer-nysl-app.appspot.com",
+            messagingSenderId: "945053085201",
+            appId: "1:945053085201:web:145fdcf63a675ad6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="scripts/controldb.js"></script>
+    <script src="scripts/controlvista.js"></script>
 </body>
 
 </html>

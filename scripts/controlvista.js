@@ -47,10 +47,9 @@ $(document).ready(function () {
     })
     //Volver al menu inicial
     $('#logo-link').click(function (e) {
-        $('#nav-bar').removeClass('nav-activo');
         transition('#index');
-
     })
+
     $('#link-foro').click(function (e) {
         transition('#foros');
         $('#nav-bar').addClass('nav-activo');
@@ -124,7 +123,25 @@ $(document).ready(function () {
     });
     // Find matches
 
-    
+    function transition(toPage) {
+        if (toPage === "#index") {
+            $('#nav-bar').removeClass('nav-activo');
+        } 
+        var toPage = $(toPage);
+        var fromPage = $('.pages .activo');
+
+        if (toPage.hasClass('activo') || toPage === fromPage) {
+            return;
+        }
+        toPage
+            .addClass('activo fade in')
+            .one('webkitAnimationEnd animationend', function () {
+                fromPage.removeClass('activo fade out');
+                toPage.removeClass('fade in');
+            })
+        fromPage.addClass('fade out');
+        document.documentElement.scrollTop = 0;
+    }
 
     function displayMatches() {
 
@@ -255,8 +272,8 @@ $(document).ready(function () {
     }
 
     function updateForumMatch(match) {
-    $('#foro-t').html('');
-    $('#foro-t').prepend(`
+        $('#foro-t').html('');
+        $('#foro-t').prepend(`
         <div class="detalle-partido-container mx-auto w80">
         <div id="${match.matchID}" class="detalle-partido">
             <div class="fixture-partido">
