@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#358A70">
+    <meta name="apple-mobile-web-app-title" content="NYSL">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
@@ -15,20 +18,19 @@
     <link rel="apple-touch-icon" sizes="120x120" href="img/icon-homescreen.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/icon-homescreen.png">
     <link rel="icon" href="img/icon-homescreen.png">
+    <meta name="theme-color" content="#358A70" />
+    <link rel="manifest" href="/manifest.json">
     <title>NYSL</title>
 </head>
 
-<body>
+<body class="bg-light-green">
+    <!-- === GIF CARGA  === -->
     <div class="pre-loader"></div>
 
-    <!-- ===BOTON VOLVER -->
-    <!-- <div class="volver hide">
-        <i class="fas fa-chevron-left"></i>
-    </div> -->
     <!-- === TOP NAV BAR === -->
-    <nav class="sticky-top navbar navbar-expand-md navbar-dark ">
+    <nav class="sticky-top navbar navbar-expand-md navbar-dark bg-green">
 
-        <a id="logo-link" href="#index"><img class="nav-logo" src="img/nysl_logo.png" alt="Logo"></a>
+        <img class="nav-logo" src="img/nysl_logo.png" alt="Logo">
 
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -57,23 +59,23 @@
 
             <div class="main">
 
-                <a class="main-item mx-auto" href="#posiciones">
-                    <h3 class="main-title">POSICIONES</h3>
+                <a class="main-item bg-green mx-auto border-radius-five" href="#posiciones">
+                    <h3 class="main-title tx-white">POSICIONES</h3>
                     <img class="main-img" src="img/main/ranking.jpeg" alt="Posiciones">
                 </a>
 
-                <a class="main-item mx-auto" href="#fixture">
-                    <h3 class="main-title">FIXTURE</h3>
+                <a class="main-item bg-green mx-auto border-radius-five" href="#fixture">
+                    <h3 class="main-title tx-white">FIXTURE</h3>
                     <img class="main-img" src="img/main/fixture.jpg" alt="Fixture">
                 </a>
 
-                <a class="main-item mx-auto" href="#sedes">
-                    <h3 class="main-title">SEDES</h3>
+                <a class="main-item bg-green mx-auto border-radius-five" href="#sedes">
+                    <h3 class="main-title tx-white">SEDES</h3>
                     <img class="main-img" src="img/main/sedes.jpg" alt="Sedes">
                 </a>
 
-                <a class="main-item mx-auto" href="#equipos">
-                    <h3 class="main-title">EQUIPOS</h3>
+                <a class="main-item bg-green mx-auto border-radius-five" href="#equipos">
+                    <h3 class="main-title tx-white">EQUIPOS</h3>
                     <img class="main-img" src="img/main/team.jpg" alt="Equipos">
                 </a>
 
@@ -83,12 +85,13 @@
 
         <!-- === POSICIONES === -->
         <div id="posiciones">
-            <div class="posiciones-container">
+
+            <div class="posiciones-container p-2 pb-5">
 
                 <h4 class="ml-1">Posiciones</h4>
 
                 <table class="tabla-puntos table mt-3">
-                    <thead>
+                    <thead class="bg-green tx-white">
                         <tr>
                             <th class="pl-2">Equipo</th>
                             <th>P</th>
@@ -107,7 +110,7 @@
                 <h4 class="ml-1">Goleadores</h4>
 
                 <table class="tabla-puntos table  mt-3">
-                    <thead>
+                    <thead class="bg-green tx-white">
                         <tr>
                             <th class="pl-2">Nombre</th>
                             <th class="text-right pr-3">Goles</th>
@@ -132,6 +135,7 @@
                         </tr>
                     </tbody>
                 </table>
+
             </div>
 
         </div>
@@ -139,7 +143,6 @@
         <!-- === SEDES === -->
         <div id="sedes">
             <div class="sedes-container">
-
 
             </div>
         </div>
@@ -152,6 +155,7 @@
                     <div class="modal-content">
 
                         <!-- Modal body -->
+
                         <div class="modal-body" id="eq-modal-data">
 
                         </div>
@@ -170,10 +174,10 @@
         <!-- === FIXTURE === -->
         <div id="fixture">
             <!-- FIXTURE PRINCIPAL -->
-            <div class="container mt-4 fix-container">
+            <div class="mt-3 pb-5 fix-container">
 
 
-                <div id="fixture-port">
+                <div id="fixture-port" class="p-2">
 
                     <!-- COLAPSE SEPTIEMPRE -->
                     <div class="mx-auto text-center">
@@ -306,16 +310,16 @@
                     </div>
                 </div>
                 <!-- Oculto por default, solo en land se ve. -->
-                <div id="fixture-land" class="ml-3 mt-3 hide">
+                <div id="fixture-land" class="ml-3 mt-3">
 
                 </div>
-                <br><br><br>
+
             </div>
 
         </div>
 
         <!-- === FOROS === -->
-        <div id="foros" >
+        <div id="foros">
 
             <!-- Si no está conectado, te pide que te conectes. -->
             <div id="login" class="d-flex flex-column justify-content-center mx-auto ">
@@ -352,7 +356,7 @@
                             <!-- Modal Header -->
                             <div class="modal-header">
                                 <h4 class="modal-title">Nuevo tema</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <button type="button" class="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                             </div>
 
                             <!-- Modal body -->
@@ -381,22 +385,21 @@
 
         </div>
 
-
         <!-- === FOOTER NAV BAR === -->
         <div id="nav-bar">
 
             <div class="footer-nav d-flex">
 
-                <a class="footer-nav-item link-posiciones d-flex align-content-center" href="#posiciones">
+                <a class="footer-nav-item link-posiciones  bg-green d-flex align-content-center" href="#posiciones">
                     <img class="item m-auto" src="img/icons/ranking-icon.png" alt="Ranking">
                 </a>
-                <a class="footer-nav-item link-fixture d-flex align-content-center" href="#fixture">
+                <a class="footer-nav-item link-fixture  bg-green d-flex align-content-center" href="#fixture">
                     <img class="item m-auto" src="img/icons/calendar-icon.png" alt="Fixture">
                 </a>
-                <a class="footer-nav-item link-sedes d-flex align-content-center" href="#sedes">
+                <a class="footer-nav-item link-sedes  bg-green d-flex align-content-center" href="#sedes">
                     <img class="item m-auto" src="img/icons/map-icon.png" alt="Sedes">
                 </a>
-                <a class="footer-nav-item link-equipos d-flex align-content-center" href="#equipos">
+                <a class="footer-nav-item link-equipos bg-green  d-flex align-content-center" href="#equipos">
                     <img class="item m-auto" src="img/icons/team-icon.png" alt="Equipos">
                 </a>
 

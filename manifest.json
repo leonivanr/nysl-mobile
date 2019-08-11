@@ -1,0 +1,15 @@
+{
+    "name": "North Side Soccer League",
+    "short_name": "NYSL",
+    "lang": "en-US",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#77BF98",
+    "theme_color": "#358A70",
+    "icons": [{
+            "src": "img/icon-homescreen.png",
+            "sizes": "48x48 128x128 144x144 192x192 256x256",
+            "type": "image/png"
+        }
+    ]
+}

@@ -304,11 +304,13 @@ $(document).on("click", ".comment-btn", function () {
 
 window.addEventListener('load', function () {
   // Bind Sign in button.
-  signInButton.addEventListener('click', function () {
+  signInButton.addEventListener('click', function (e) {
+    e.preventDefault();
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
   });
-  signInButtonDos.addEventListener('click', function () {
+  signInButtonDos.addEventListener('click', function (e) {
+    e.preventDefault();
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
     transition('#fixture');
@@ -318,7 +320,8 @@ window.addEventListener('load', function () {
   });
 
   // Bind Sign out button.
-  signOutButton.addEventListener('click', function () {
+  signOutButton.addEventListener('click', function (e) {
+    e.preventDefault();
     firebase.auth().signOut();
     location.reload();
   });
@@ -327,7 +330,8 @@ window.addEventListener('load', function () {
   firebase.auth().onAuthStateChanged(onAuthStateChanged);
 
   // Saves message on form submit.
-  addPostButton.addEventListener('click', function () {
+  addPostButton.addEventListener('click', function (e) {
+    e.preventDefault();
     $('.alert').alert('close');
     let title = titleInput.value;
     let text = messageInput.value;

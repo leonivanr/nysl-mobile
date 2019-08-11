@@ -1,68 +1,62 @@
 :root {
-    --main-bg-color: #358A70;
-    --sec-bg-color: #77BF98;
-    --main-shadow: #0F2820;
+    --light-green: #77BF98;
+    --green: #358A70;
+    --dark-green: #0F2820;
     --text-color: #EBF0D9;
-
 }
 
-/* /TODO:/ */
-.tx-p {
-    color: var(--main-shadow)
-}
-
-.tx-s {
-    color: var(--sec-bg-color);
-}
-
-.tx-wh {
+/* COLORS */
+/* #region */
+.tx-white {
     color: var(--text-color);
 }
 
-.bg-p {
-    color: var(--main-bg-color)
+.tx-dark-green {
+    color: var(--dark-green)
 }
 
-.bg-s {
-    color: var(--sec-bg-color);
+.tx-light-green {
+    color: var(--light-green);
 }
 
-.bg-t {
-    color: var(--text-color);
+.tx-green {
+    color: var(--green);
+}
+
+.bg-white {
+    background-color: var(--text-color);
+}
+
+.bg-dark-green {
+    background-color: var(--dark-green)
+}
+
+.bg-light-green {
+    background-color: var(--light-green);
+}
+
+.bg-green {
+    background-color: var(--green);
+}
+
+/* #endregion */
+
+.border-radius-five {
+    border-radius: 0.5rem;
 }
 
 body,
 html {
-    background-color: var(--sec-bg-color) !important;
     width: 100%;
     height: 100%;
     font-family: 'Oswald', sans-serif !important;
 }
 
-.volver {
-    width: 42px;
-    height: 42px;
-    background-color: var(--main-bg-color);
-    color: var(--text-color);
-    position: fixed;
-    bottom: 15vh;
-    right: 5%;
-    z-index: 100;
-    font-size: xx-large;
-    transition-duration: 100ms;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 1px 2px 5px -1px #0F2820;
-}
-.volver:active {
-    font-size: small;
-}
 #empty-forum {
     width: 90%;
     border-radius: 0.5rem;
 }
+
 /*//////////////////////////*/
 /* LOADER*/
 /*//////////////////////////*/
@@ -74,16 +68,10 @@ html {
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background: url(../img/loading.gif) center no-repeat var(--sec-bg-color);
+    background: url(../img/loading.gif) center no-repeat var(--light-green);
     background-size: 150px 150px;
 }
-.loading-ball{
-    position: relative;
-    width: 100px;
-    height: 100px;
-    z-index: 9999;
 
-}
 /*//////////////////////////*/
 /* CONTENEDOR*/
 /*//////////////////////////*/
@@ -99,7 +87,6 @@ html {
     top: 0;
     left: 0;
     width: 100%;
-
 }
 
 .pages>div.activo {
@@ -145,8 +132,6 @@ html {
 
 /* #endregion */
 
-
-
 /*//////////////////////////*/
 /* TOP NAV BAR */
 /*//////////////////////////*/
@@ -155,8 +140,7 @@ html {
     width: 100%;
     padding-left: 7.5%;
     padding-right: 7.5%;
-    background-color: var(--main-bg-color);
-    box-shadow: 1px 1px 5px 0px rgba(15, 40, 32, 0.75);
+    box-shadow: 1px 1px 5px 0px var(--dark-green);
 }
 
 .nav-container {
@@ -182,17 +166,16 @@ html {
     height: 90vh;
     width: 100vw;
     display: flex !important;
+    display: -webkit-flex !important;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .main-item {
-    background-color: var(--main-bg-color) !important;
     height: 15vh;
     width: 85% !important;
     text-indent: 1em;
-    border-radius: 0.5em;
-    box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 6px 10px -3px var(--dark-green);
 }
 
 .main-img {
@@ -208,27 +191,22 @@ html {
     font-size: 1.5em;
     line-height: 15vh;
     text-decoration: none;
-    color: #EBF0D9;
-}
-
-.bg-main {
-    background-color: var(--main-bg-color);
 }
 
 /*//////////////////////////*/
-/* BARRA DE NAVAGACIÓN FOOTER */
+/* BARRA DE NAVEGACIÓN FOOTER */
 /*//////////////////////////*/
 
+/* #region footer */
 .footer-nav {
     position: fixed;
     bottom: 0;
     z-index: 100;
     width: 100%;
-    box-shadow: -1px -1px 5px 0px var(--main-shadow);
+    box-shadow: -1px -1px 5px 0px var(--dark-green);
 }
 
 .footer-nav-item {
-    background-color: var(--main-bg-color);
     width: 25%;
     height: 10vh;
 }
@@ -245,21 +223,21 @@ html {
     border-bottom: 2px solid var(--text-color);
 }
 
+/* #endregion footer */
+
 /*//////////////////////////*/
 /* TABLA POSICIONES */
 /*//////////////////////////*/
 
-/* #region */
-.posiciones-container {
-    display: flex;
-    flex-direction: column;
-}
+/* #region posiciones*/
+
 
 table.tabla-puntos td,
 table.tabla-puntos th {
-    border-top: 1px solid var(--main-bg-color);
+    border-top: 1px solid var(--green);
     padding: 3px 2px;
 }
+
 
 table.tabla-puntos tbody td {
     font-size: 1em;
@@ -267,14 +245,9 @@ table.tabla-puntos tbody td {
     vertical-align: middle;
 }
 
-table.tabla-puntos thead {
-    background: var(--main-bg-color);
-}
-
 table.tabla-puntos thead th {
     font-size: 1em;
     border-bottom: none;
-    color: var(--text-color);
     font-weight: lighter;
 }
 
@@ -290,7 +263,7 @@ table.tabla-puntos thead th {
 /* FIXTURE */
 /*///////////////////////////*/
 
-/* #region */
+/* #region fixture*/
 .img-club {
     width: 7vh;
     height: 7vh;
@@ -299,12 +272,13 @@ table.tabla-puntos thead th {
 .versus {
     font-size: 1.2em;
     line-height: 7vh;
-    text-shadow: 0px 1px 2px var(--main-shadow);
+    text-shadow: 0px 1px 2px var(--dark-green);
     margin-bottom: 0;
 }
 
 .fixture-partido {
     display: flex;
+    display: -webkit-flex;
     width: 90%;
     margin: auto;
     justify-content: space-between;
@@ -312,21 +286,33 @@ table.tabla-puntos thead th {
 }
 
 .titulo-principal {
-    color: var(--main-shadow);
+    color: var(--dark-green);
     font-size: 2em;
     text-align: center;
 }
 
 .subtitulo-fecha {
     display: block;
-    color: var(--main-bg-color);
+    color: var(--green);
     font-size: 1.5em;
 }
 
 .detalle-partido-container {
     margin: 2vh 0;
-    border: 1px solid var(--main-bg-color);
+    border: 1px solid var(--green);
     border-radius: 0.5em;
+}
+
+.detalle-partido-container a:hover {
+    color: var(--green);
+    text-decoration: underline;
+}
+.titulo-principal:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+.subtitulo-fecha:hover {
+    color: var(--text-color);
 }
 
 .detalle-partido {
@@ -354,6 +340,7 @@ h5 {
     width: 90%;
     margin: 0 auto;
     display: flex;
+    display: -webkit-flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -362,12 +349,12 @@ h5 {
     width: 100%;
     margin: 0 auto;
     text-align: left;
-    color: var(--main-shadow);
+    color: var(--dark-green);
 }
 
 .partido-subtitulo {
     color: var(--text-color);
-    text-shadow: 1px 1px 1px var(--main-shadow);
+    text-shadow: 1px 1px 1px var(--dark-green);
 }
 
 .versus-modal {
@@ -377,7 +364,7 @@ h5 {
 }
 
 .modal-date {
-    color: var(--main-bg-color);
+    color: var(--green);
 }
 
 .foro-btn {
@@ -386,7 +373,7 @@ h5 {
 
 #iframe-map {
     border-radius: 0.5em;
-    border: 1px solid var(--main-shadow);
+    border: 1px solid var(--dark-green);
 }
 
 /* #endregion */
@@ -394,18 +381,22 @@ h5 {
 /*//////////////////////////*/
 /* SEDES */
 /*///////////////////////////*/
+
+/* #region sedes */
 .sedes-container {
     width: 100%;
     height: 80vh !important;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
 .modal-content {
     background-color: var(--text-color);
-    color: var(--main-shadow);
+    color: var(--dark-green);
 }
 
 .modal-header {
@@ -413,17 +404,14 @@ h5 {
 }
 
 .sedes-item {
-    background-color: var(--main-bg-color);
-    width: 80% !important;
+    width: 85% !important;
     height: 10vh;
     z-index: 0;
     text-decoration: none;
     text-align: center;
     border-radius: 0.5em;
     box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
-    color: var(--text-color);
-    text-shadow: 1px 1px 1px var(--main-shadow);
-    cursor: pointer;
+    text-shadow: 0px 1px 2px var(--dark-green);
 }
 
 .sedes-titulo {
@@ -433,30 +421,33 @@ h5 {
 
 .embed-responsive {
     border-radius: 0.5em;
-    border: 1px solid var(--main-shadow);
+    border: 1px solid var(--dark-green);
 }
+
+/* #endregion sedes */
 
 /*//////////////////////////*/
 /* PAGINA EQUIPOS */
 /*//////////////////////////*/
+
+/* #region equipos */
 .equipos-container {
     height: 80vh;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .equipos-item {
-    background-color: var(--main-bg-color);
-    width: 80%;
+    width: 85%;
     height: 10vh;
     text-decoration: none;
     text-align: left;
     text-indent: 1em;
     border-radius: 0.5em;
     box-shadow: 0px 6px 10px -3px rgba(0, 0, 0, 0.75);
-    color: var(--text-color);
-    text-shadow: 1px 1px 1px var(--main-shadow);
+    text-shadow: 0px 1px 2px var(--dark-green);
 }
 
 .equipos-titulo {
@@ -476,6 +467,10 @@ h5 {
     height: 20vh;
     width: 20vh;
 }
+.modal-team-title {
+    font-size: 1.25em;
+}
+/* #endregion equipos */
 
 /*//////////////////////////*/
 /* FOROS */
@@ -492,11 +487,11 @@ h5 {
 }
 
 .caja-post-comentario {
-    text-shadow: 0px 0px 1px var(--main-shadow);
+    text-shadow: 0px 0px 1px var(--dark-green);
 }
 
 .caja-post-titulo {
-    text-shadow: 0px 0px 0px var(--main-shadow);
+    text-shadow: 0px 0px 1px var(--dark-green);
 }
 
 #login {
@@ -505,19 +500,19 @@ h5 {
 }
 
 #sign-in-button {
-    background-color: var(--main-bg-color);
+    background-color: var(--green);
     color: var(--text-color);
 }
 
 .comment-btn {
     background-color: #358A70;
     color: #EBF0D9;
-    border: 1px solid var(--sec-bg-color);
-    text-shadow: 0px 0px 1px var(--main-shadow);
+    border: 1px solid var(--light-green);
+    text-shadow: 0px 0px 1px var(--dark-green);
 }
 
 .create-post {
-    background-color: var(--main-bg-color);
+    background-color: var(--green);
     color: var(--text-color);
     width: 90%;
     border-radius: 0.5rem;
@@ -525,7 +520,7 @@ h5 {
 }
 
 #add-post-btn {
-    background-color: var(--main-bg-color);
+    background-color: var(--green);
     color: var(--text-color);
 }
 
@@ -534,7 +529,7 @@ h5 {
 }
 
 .foro-ctn {
-    border-bottom: 2px solid var(--main-bg-color) !important;
+    border-bottom: 2px solid var(--green) !important;
 }
 
 .cm-autor {
@@ -542,11 +537,11 @@ h5 {
 }
 
 .comentario {
-    text-shadow: 0px 0px 1px var(--main-shadow);
+    text-shadow: 0px 0px 1px var(--dark-green);
 }
 
 .shadow-dark-green {
-    text-shadow: 0px 0px 1px var(--main-shadow);
+    text-shadow: 0px 0px 1px var(--dark-green);
 }
 
 /* #endregion */
@@ -563,19 +558,39 @@ h5 {
         font-size: 1rem;
     }
 
-    .index-item {
-        width: 38%;
+    /*//////////////////////////*/
+    /* MAIN */
+    /*///////////////////////////*/
+    /* #region main */
+    .main {
+        height: 85vh !important;
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+    }
+
+    .main-item {
+        width: 45% !important;
+        height: 25vh;
+        margin: 2vh 0;
+    }
+
+    .main-title {
+        line-height: 25vh;
+    }
+
+    .main-img {
         height: 25vh;
     }
 
+    /* #endregion main */
     #fixture-port {
-        width: 50%;
+        width: 49%;
         margin-left: 25%;
         transition-duration: 1s;
     }
 
-    #fixture-land {
-        width: 50%;
+    .w-45 {
+        width: 45%;
     }
 
     .modal-date {
@@ -586,25 +601,7 @@ h5 {
     .fix-container {
         width: 100% !important;
         display: flex;
-    }
-
-    .main-img {
-        height: 30vh;
-    }
-
-    .main {
-        height: 85vh !important;
-        flex-wrap: wrap;
-    }
-
-    .main-item {
-        width: 45% !important;
-        height: 30vh;
-
-    }
-
-    .main-title {
-        line-height: 30vh;
+        display: -webkit-flex;
     }
 
     .sedes-item {
@@ -623,6 +620,8 @@ h5 {
     .equipos-container {
         height: 70vh;
         display: flex;
+        display: -webkit-flex;
+        -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
     }
 
@@ -643,8 +642,8 @@ h5 {
     }
 
     .modal-img {
-        width: 40vw;
-        height: 40vw;
+        width: 30vw;
+        height: 30vw;
     }
 
     /* #endregion */
@@ -657,9 +656,8 @@ h5 {
         height: 70vh !important;
     }
 
-    .modal-content {
-        background-color: var(--text-color);
-        color: var(--main-shadow);
+    .modal-date {
+        text-shadow: 0px 1px 2px #0F2820
     }
 
     .sedes-item {
