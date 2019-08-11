@@ -8,7 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link rel="shortcut icon" sizes="196x196" href="img/icon-homescreen.png">
     <link rel="apple-touch-icon" sizes="76x76" href="img/icon-homescreen.png">
@@ -21,6 +21,10 @@
 <body>
     <div class="pre-loader"></div>
 
+    <!-- ===BOTON VOLVER -->
+    <!-- <div class="volver hide">
+        <i class="fas fa-chevron-left"></i>
+    </div> -->
     <!-- === TOP NAV BAR === -->
     <nav class="sticky-top navbar navbar-expand-md navbar-dark ">
 
@@ -54,22 +58,22 @@
             <div class="main">
 
                 <a class="main-item mx-auto" href="#posiciones">
-                    <h3>POSICIONES</h3>
+                    <h3 class="main-title">POSICIONES</h3>
                     <img class="main-img" src="img/main/ranking.jpeg" alt="Posiciones">
                 </a>
 
                 <a class="main-item mx-auto" href="#fixture">
-                    <h3>FIXTURE</h3>
+                    <h3 class="main-title">FIXTURE</h3>
                     <img class="main-img" src="img/main/fixture.jpg" alt="Fixture">
                 </a>
 
                 <a class="main-item mx-auto" href="#sedes">
-                    <h3>SEDES</h3>
+                    <h3 class="main-title">SEDES</h3>
                     <img class="main-img" src="img/main/sedes.jpg" alt="Sedes">
                 </a>
 
                 <a class="main-item mx-auto" href="#equipos">
-                    <h3>EQUIPOS</h3>
+                    <h3 class="main-title">EQUIPOS</h3>
                     <img class="main-img" src="img/main/team.jpg" alt="Equipos">
                 </a>
 
@@ -78,10 +82,9 @@
         </div>
 
         <!-- === POSICIONES === -->
-        <div id="posiciones" >
-            <div class="container">
+        <div id="posiciones">
+            <div class="posiciones-container">
 
-                <br>
                 <h4 class="ml-1">Posiciones</h4>
 
                 <table class="tabla-puntos table mt-3">
@@ -129,14 +132,13 @@
                         </tr>
                     </tbody>
                 </table>
-                <br><br><br>
-
             </div>
+
         </div>
 
         <!-- === SEDES === -->
         <div id="sedes">
-            <div class="flex-column">
+            <div class="sedes-container">
 
 
             </div>
@@ -158,15 +160,21 @@
                 </div>
             </div>
 
+
+            <div class="equipos-container">
+
+            </div>
+
         </div>
 
         <!-- === FIXTURE === -->
-        <div id="fixture" >
+        <div id="fixture">
             <!-- FIXTURE PRINCIPAL -->
             <div class="container mt-4 fix-container">
 
 
                 <div id="fixture-port">
+
                     <!-- COLAPSE SEPTIEMPRE -->
                     <div class="mx-auto text-center">
                         <a class="titulo-principal" data-toggle="collapse" href="#fechasSeptiembre" role="button"
@@ -198,7 +206,7 @@
 
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoQuince" role="button"
                                     aria-expanded="false" aria-controls="domingoQuin">
-                                    15-9
+                                    15/9
                                 </a>
                                 <div class="collapse" data-parent="#displaySeptiembre" id="domingoQuince">
 
@@ -207,7 +215,7 @@
 
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVdos" role="button"
                                     aria-expanded="false" aria-controls="domingoVdos">
-                                    22-9
+                                    22/9
                                 </a>
                                 <div class="collapse" data-parent="#displaySeptiembre" id="domingoVdos">
 
@@ -216,7 +224,7 @@
 
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVnueve" role="button"
                                     aria-expanded="false" aria-controls="domingoVnueve">
-                                    29-9
+                                    29/9
                                 </a>
                                 <div class="collapse" data-parent="#displaySeptiembre" id="domingoVnueve">
 
@@ -238,12 +246,12 @@
 
 
                         <div class="collapse" id="fechasOctubre" data-parent="#fixture">
-                            <div id="displayOctubre" class="">
+                            <div id="displayOctubre">
                                 <!-- DOMINGO 6-10 -->
 
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoSeis" role="button"
                                     aria-expanded="false" aria-controls="domingoSeis">
-                                    6-10
+                                    6/10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoSeis">
 
@@ -252,7 +260,7 @@
 
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoTrece" role="button"
                                     aria-expanded="false" aria-controls="domingoTrece">
-                                    13-10
+                                    13/10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoTrece">
 
@@ -261,7 +269,7 @@
 
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVeinte" role="button"
                                     aria-expanded="false" aria-controls="domingoVeinte">
-                                    20-10
+                                    20/10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoVeinte">
 
@@ -270,7 +278,7 @@
 
                                 <a class="subtitulo-fecha" data-toggle="collapse" href="#domingoVsiete" role="button"
                                     aria-expanded="false" aria-controls="domingoVsiete">
-                                    27-10
+                                    27/10
                                 </a>
                                 <div class="collapse" data-parent="#displayOctubre" id="domingoVsiete">
 
@@ -285,10 +293,12 @@
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
                                 <!-- Modal body -->
-                                <div class="modal-body" id="body-data">
-
+                                <div class="modal-body pt-0" id="body-data">
                                 </div>
 
                             </div>
@@ -296,7 +306,7 @@
                     </div>
                 </div>
                 <!-- Oculto por default, solo en land se ve. -->
-                <div id="fixture-land" class="ml-3 mt-3">
+                <div id="fixture-land" class="ml-3 mt-3 hide">
 
                 </div>
                 <br><br><br>
@@ -305,10 +315,10 @@
         </div>
 
         <!-- === FOROS === -->
-        <div id="foros">
+        <div id="foros" >
 
             <!-- Si no está conectado, te pide que te conectes. -->
-            <div id="login" class="d-flex flex-column justify-content-center mx-auto">
+            <div id="login" class="d-flex flex-column justify-content-center mx-auto ">
                 <h4>Debes estar conectado para ver este contenido.</h4>
 
                 <button id="sign-in-button" class="btn shadow-sm mt-2">Conectarse</button>
@@ -324,12 +334,11 @@
 
                 <!-- Crear post. -->
                 <div class="mt-2">
-                    <h4 class="create-post shadow-sm mx-auto text-center pb-1" data-toggle="modal" data-target="#crear-post">
+                    <h4 class="create-post shadow-sm mx-auto text-center pb-1" data-toggle="modal"
+                        data-target="#crear-post">
                         Añadir nuevo tema
                     </h4>
                 </div>
-
-
 
                 <div id="recent-posts-list">
 
@@ -372,16 +381,17 @@
 
         </div>
 
+
         <!-- === FOOTER NAV BAR === -->
         <div id="nav-bar">
 
             <div class="footer-nav d-flex">
 
-                <a class="footer-nav-item link-posiciones d-flex align-content-center" href="#fixture">
-                    <img class="item m-auto" src="img/icons/calendar-icon.png" alt="Fixture">
-                </a>
                 <a class="footer-nav-item link-posiciones d-flex align-content-center" href="#posiciones">
                     <img class="item m-auto" src="img/icons/ranking-icon.png" alt="Ranking">
+                </a>
+                <a class="footer-nav-item link-fixture d-flex align-content-center" href="#fixture">
+                    <img class="item m-auto" src="img/icons/calendar-icon.png" alt="Fixture">
                 </a>
                 <a class="footer-nav-item link-sedes d-flex align-content-center" href="#sedes">
                     <img class="item m-auto" src="img/icons/map-icon.png" alt="Sedes">
@@ -393,6 +403,8 @@
             </div>
 
         </div>
+
+
 
     </div>
 
@@ -419,7 +431,7 @@
         firebase.initializeApp(firebaseConfig);
     </script>
     <script src="scripts/controldb.js"></script>
-    <script src="scripts/controlvista.js"></script>
+    <script src="scripts/controlview.js"></script>
 </body>
 
 </html>

@@ -39,6 +39,30 @@ html {
     font-family: 'Oswald', sans-serif !important;
 }
 
+.volver {
+    width: 42px;
+    height: 42px;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    position: fixed;
+    bottom: 15vh;
+    right: 5%;
+    z-index: 100;
+    font-size: xx-large;
+    transition-duration: 100ms;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 2px 5px -1px #0F2820;
+}
+.volver:active {
+    font-size: small;
+}
+#empty-forum {
+    width: 90%;
+    border-radius: 0.5rem;
+}
 /*//////////////////////////*/
 /* LOADER*/
 /*//////////////////////////*/
@@ -53,10 +77,18 @@ html {
     background: url(../img/loading.gif) center no-repeat var(--sec-bg-color);
     background-size: 150px 150px;
 }
+.loading-ball{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    z-index: 9999;
 
+}
 /*//////////////////////////*/
 /* CONTENEDOR*/
 /*//////////////////////////*/
+
+/* #region */
 .pages {
     position: relative;
 }
@@ -67,24 +99,28 @@ html {
     top: 0;
     left: 0;
     width: 100%;
+
 }
 
 .pages>div.activo {
     display: block !important;
 }
 
+/* #endregion */
+
 /*//////////////////////////*/
 /* ANIMACIONES*/
 /*//////////////////////////*/
 
+/* #region */
 .in {
     animation-timing-function: ease-in-out;
-    animation-duration: 600ms;
+    animation-duration: 350ms;
 }
 
 .out {
     animation-timing-function: ease-in-out;
-    animation-duration: 200ms;
+    animation-duration: 350ms;
 }
 
 .fade.in {
@@ -105,6 +141,10 @@ html {
         opacity: 1;
     }
 }
+
+
+/* #endregion */
+
 
 
 /*//////////////////////////*/
@@ -162,7 +202,7 @@ html {
     border-bottom-right-radius: 0.5em;
 }
 
-h3 {
+.main-title {
     float: left;
     margin: auto;
     font-size: 1.5em;
@@ -201,9 +241,19 @@ h3 {
     display: block !important;
 }
 
+.link-activo {
+    border-bottom: 2px solid var(--text-color);
+}
+
 /*//////////////////////////*/
 /* TABLA POSICIONES */
 /*//////////////////////////*/
+
+/* #region */
+.posiciones-container {
+    display: flex;
+    flex-direction: column;
+}
 
 table.tabla-puntos td,
 table.tabla-puntos th {
@@ -234,10 +284,13 @@ table.tabla-puntos thead th {
     margin-top: -3px !important;
 }
 
+/* #endregion */
+
 /*///////////////////////////*/
 /* FIXTURE */
 /*///////////////////////////*/
 
+/* #region */
 .img-club {
     width: 7vh;
     height: 7vh;
@@ -285,10 +338,13 @@ h5 {
     font-size: 1rem;
 }
 
+/* #endregion */
+
 /*//////////////////////////*/
 /* FIXTURE DETALLE */
 /*//////////////////////////*/
 
+/* #region */
 .img-club-detalle {
     width: 15vh;
     height: 15vh;
@@ -333,17 +389,27 @@ h5 {
     border: 1px solid var(--main-shadow);
 }
 
+/* #endregion */
+
 /*//////////////////////////*/
 /* SEDES */
 /*///////////////////////////*/
-#sedes {
+.sedes-container {
     width: 100%;
     height: 80vh !important;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .modal-content {
     background-color: var(--text-color);
     color: var(--main-shadow);
+}
+
+.modal-header {
+    line-height: 1.5;
 }
 
 .sedes-item {
@@ -365,9 +431,20 @@ h5 {
     font-size: 1.5em;
 }
 
+.embed-responsive {
+    border-radius: 0.5em;
+    border: 1px solid var(--main-shadow);
+}
+
 /*//////////////////////////*/
 /* PAGINA EQUIPOS */
 /*//////////////////////////*/
+.equipos-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 
 .equipos-item {
     background-color: var(--main-bg-color);
@@ -403,6 +480,9 @@ h5 {
 /*//////////////////////////*/
 /* FOROS */
 /*//////////////////////////*/
+
+/* #region */
+
 .caja-post {
     background-color: #358A70;
     color: #EBF0D9;
@@ -410,12 +490,15 @@ h5 {
     margin: auto;
     border-radius: 0.5em;
 }
-.caja-post-comentario{
+
+.caja-post-comentario {
     text-shadow: 0px 0px 1px var(--main-shadow);
 }
-.caja-post-titulo{
+
+.caja-post-titulo {
     text-shadow: 0px 0px 0px var(--main-shadow);
 }
+
 #login {
     width: 80%;
     height: 80vh;
@@ -453,27 +536,24 @@ h5 {
 .foro-ctn {
     border-bottom: 2px solid var(--main-bg-color) !important;
 }
+
 .cm-autor {
     text-shadow: none;
 }
-.comentario{
+
+.comentario {
     text-shadow: 0px 0px 1px var(--main-shadow);
 }
-h6 {
+
+.shadow-dark-green {
     text-shadow: 0px 0px 1px var(--main-shadow);
 }
+
+/* #endregion */
 
 /* LANDSCAPE */
 
 @media (orientation: landscape) {
-    .container {
-        width: 100% !important;
-        height: 100%;
-    }
-
-    .navbar {
-        height: 15vh;
-    }
 
     .nav-logo {
         height: 10vh;
@@ -488,12 +568,14 @@ h6 {
         height: 25vh;
     }
 
-    #fixture-land {
-        width: 49%;
+    #fixture-port {
+        width: 50%;
+        margin-left: 25%;
+        transition-duration: 1s;
     }
 
-    #fixture-port {
-        width: 49%;
+    #fixture-land {
+        width: 50%;
     }
 
     .modal-date {
@@ -504,15 +586,25 @@ h6 {
     .fix-container {
         width: 100% !important;
         display: flex;
-
     }
 
-    #img-ranking {
-        height: 25vh;
+    .main-img {
+        height: 30vh;
+    }
+
+    .main {
+        height: 85vh !important;
+        flex-wrap: wrap;
     }
 
     .main-item {
-        width: 50% !important;
+        width: 45% !important;
+        height: 30vh;
+
+    }
+
+    .main-title {
+        line-height: 30vh;
     }
 
     .sedes-item {
@@ -523,8 +615,62 @@ h6 {
         height: 13vh;
     }
 
+    /*//////////////////
+    ////EQUIPOS 
+     /////////////////*/
+
+    /* #region */
+    .equipos-container {
+        height: 70vh;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .equipos-item {
-        width: 60%;
+        width: 40%;
+        height: 17vh;
+        margin: 1vh 0;
+    }
+
+    .equipos-titulo {
+        line-height: 16vh;
+    }
+
+    .equipos-img {
+        width: 14vh;
+        height: 14vh;
+        margin: 1vh;
+    }
+
+    .modal-img {
+        width: 40vw;
+        height: 40vw;
+    }
+
+    /* #endregion */
+
+    /*//////////////////////////*/
+    /* SEDES */
+    /*///////////////////////////*/
+    .sedes-container {
+        width: 100%;
+        height: 70vh !important;
+    }
+
+    .modal-content {
+        background-color: var(--text-color);
+        color: var(--main-shadow);
+    }
+
+    .sedes-item {
+        width: 40% !important;
+        height: 17vh;
+        margin: 1vh 0;
+    }
+
+    .sedes-titulo {
+        line-height: 17vh;
+        font-size: 1.5em;
     }
 
     .item {

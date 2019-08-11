@@ -2,11 +2,18 @@ $(document).ready(function () {
     const fixture = info.matches;
     const teams = info.teams;
     const locations = info.locations;
+    var lastPage;
     var mql = window.matchMedia("(orientation: portrait)");
+    window.history.pushState('#index', '');
+    
+    // Llenar los divs.
+
     displayPositions();
     displayMatches();
     displayTeams();
     displayLocations();
+
+    // Detecto el portrait,
     if (mql.matches) {
         $('.detalle-partido').each(function () {
             $(this).attr('data-toggle', 'modal');
@@ -16,7 +23,6 @@ $(document).ready(function () {
             $(this).attr('data-toggle', '');
         })
     }
-
     // Add a media query change listener
     mql.addListener(function (m) {
         if (m.matches) {
@@ -32,41 +38,50 @@ $(document).ready(function () {
         }
     });
     //Ir al id.
+    $('.main a').unbind("click");
     $('.main a').click(function (e) {
-        let aux = $(e.target);
-        let proximaPagina;
-        if (typeof aux.parent()[0].hash !== "undefined") {
-            proximaPagina = aux.parent()[0].hash;
-        } else {
-            proximaPagina = e.target.hash;
-        }
-        transition(proximaPagina);
+        e.preventDefault();
+        let prevPage = $('.pages .activo').attr('id');
+        
+        let proximaPagina = e.currentTarget.hash;
         $('#nav-bar').addClass('nav-activo');
-        document.documentElement.scrollTop = 0;
-
-    })
+        $('.volver').removeClass('hide');
+        if (proximaPagina !== historial[historial.length - 1]) {
+            historial.push(proximaPagina);
+        }
+        addLinkActive(proximaPagina);
+        window.history.pushState(proximaPagina, "");
+        console.log('main click',window.history);
+        transition(proximaPagina);
+        })
     //Volver al menu inicial
     $('#logo-link').click(function (e) {
-        transition('#index');
-    })
-
-    $('#link-foro').click(function (e) {
-        transition('#foros');
-        $('#nav-bar').addClass('nav-activo');
+        let index = e.target.parentElement.hash;
+        console.log('elemento: index', index)
+        $('.pages .activo').removeClass('activo');
+        // if ($('#index .activo')) {
+        //     return;
+        // }
+        $('#nav-bar').removeClass('nav-activo');
+        $('.volver').addClass('hide');
+        $('#index').addClass('activo');
     })
     //Detectar proxima pagina y ocultar.
+    $('#nav-bar a').unbind("click");
     $('#nav-bar a').click(function (e) {
         e.preventDefault();
-        let aux = $(e.target);
-        if (typeof aux.parent()[0].hash !== "undefined") {
-            proximaPagina = aux.parent()[0].hash;
-        } else {
-            proximaPagina = e.target.hash;
+        let proximaPagina = e.currentTarget.hash;
+        if (proximaPagina !== historial[historial.length - 1]) {
+            historial.push(proximaPagina);
         }
+        addLinkActive(proximaPagina);
+        // let prevPage = $('.pages .activo').attr('id');
+        window.history.pushState(proximaPagina, "");
+        console.log('nav-click', window.history)
         transition(proximaPagina);
-        document.documentElement.scrollTop = 0;
-
+        
     })
+    //Obtengo el id del partido, y muestro según land o port.
     $(document).on("click", ".detalle-partido", function () {
         let matchId = $(this).attr('id');
         let resultadoMatch = fixture.filter(x => x.matchID === matchId);
@@ -78,18 +93,21 @@ $(document).ready(function () {
                 matchesOnPortrait(resultadoMatch, locationMatch, matchId)
             )
         } else {
+            $("#fixture-port").css('margin-left', '0');
+            $("#fixture-land").removeClass('hide');
             $("#fixture-land").html(
                 matchesOnLandscape(resultadoMatch, locationMatch, matchId)
             )
         }
 
     });
+    // LLena el modal de acuerdo al equipo elegido.
     $(document).on("click", ".equipos-item", function () {
         let teamId = $(this).attr('id');
         let teamDetalle = teams.filter(x => x.team_id === teamId);
         $("#eq-modal-data").html(
             `
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
             <br>
             <div class="d-flex flex-row align-items-center">
                 <div class="asd">
@@ -112,22 +130,76 @@ $(document).ready(function () {
             `
         )
     });
+    //Setear el matchId para obtener mensajes del foro.
     $(document).on("click", ".foro-btn", function () {
         temaId = $(this).attr('id');
         let cleanMatchId = temaId.match(/\d/g).join("");
         let match = fixture.filter(x => x.matchID === cleanMatchId);
+        let proximaPagina = '#foros';
         updateForumMatch(match[0]);
-        transition('#foros');
+        if (proximaPagina !== historial[historial.length - 1]) {
+            historial.push(proximaPagina);
+            console.log(historial);
+        }
+        addLinkActive(proximaPagina);
+        transition(proximaPagina);
         recentPostsSection.innerHTML = '';
+
         startDatabaseQueries();
     });
-    // Find matches
 
-    function transition(toPage) {
-        if (toPage === "#index") {
+    // Listener para boton volver (en pantalla).
+    $('.volver').click(function (e) {
+        backHistory();
+    })
+    window.addEventListener("popstate", function (event) {
+        console.log('estate history back' + window.history.state);
+        console.log('estate history event' + event.state);
+
+        
+        if (event.state) {
+    
+            if (event.state === '#index') {
+                $('#nav-bar').removeClass('nav-activo');
+                $('.volver').addClass('hide');
+            }
+            console.log('estate pressed button' + window.history.state);
+            addLinkActive(event.state);
+            // Transition back - but in reverse.
+            transition(event.state);
+            console.log(window.history);
+        } else if(!event.state){
+            console.log('no')
+            window.history.go(-1);
+        }
+    
+    }, false);
+    function addLinkActive(proximaPagina) {
+        $('#nav-bar .link-activo').removeClass('link-activo');
+        if (proximaPagina === '#foros') {
+            return;
+        }
+        // if (typeof(proximaPagina) === null)
+        let linkActivo = $('.link-' + proximaPagina.substr(1));
+        linkActivo.addClass('link-activo');
+    }
+
+    function backHistory() {
+        if (historial.length >= 2) {
+            console.log('pop()');
+            historial.pop();
+        }
+        lastPage = historial[historial.length - 1];
+        if (lastPage === '#index') {
             $('#nav-bar').removeClass('nav-activo');
-        } 
-        var toPage = $(toPage);
+            $('.volver').addClass('hide');
+        }
+        addLinkActive(lastPage);
+        transition(lastPage);
+    }
+
+    function transition(page) {
+        var toPage = $(page);
         var fromPage = $('.pages .activo');
 
         if (toPage.hasClass('activo') || toPage === fromPage) {
@@ -140,47 +212,49 @@ $(document).ready(function () {
                 toPage.removeClass('fade in');
             })
         fromPage.addClass('fade out');
-        document.documentElement.scrollTop = 0;
+    }
+
+    function addHistory(page) {
+
     }
 
     function displayMatches() {
 
-        fixture.filter(x => x.fullDay === "September 1st").forEach(match => {
+        fixture.filter(x => x.fullDay === "Septiembre 1º").forEach(match => {
             $('#domingoUno').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "September 8th").forEach(match => {
+        fixture.filter(x => x.fullDay === "Septiembre 8º").forEach(match => {
             $('#domingoOcho').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "September 15th").forEach(match => {
+        fixture.filter(x => x.fullDay === "Septiembre 15º").forEach(match => {
             $('#domingoQuince').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "September 22nd").forEach(match => {
+        fixture.filter(x => x.fullDay === "Septiembre 22º").forEach(match => {
             $('#domingoVdos').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "September 29th").forEach(match => {
+        fixture.filter(x => x.fullDay === "Septiembre 29º").forEach(match => {
             $('#domingoVnueve').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "October 6th").forEach(match => {
+        fixture.filter(x => x.fullDay === "October 6º").forEach(match => {
             $('#domingoSeis').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "October 13rd").forEach(match => {
+        fixture.filter(x => x.fullDay === "October 13º").forEach(match => {
             $('#domingoTrece').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "October 20th").forEach(match => {
+        fixture.filter(x => x.fullDay === "October 20º").forEach(match => {
             $('#domingoVeinte').append(showM(match));
         })
-        fixture.filter(x => x.fullDay === "October 27th").forEach(match => {
+        fixture.filter(x => x.fullDay === "October 27º").forEach(match => {
             $('#domingoVsiete').append(showM(match));
         })
-
 
     }
 
     function displayTeams() {
 
         teams.forEach(team => {
-            $('#equipos').append(`
-            <div id="${team.team_id}" class="equipos-item mt-3 mx-auto" data-toggle="modal" data-target="#equipos-modal">
+            $('.equipos-container').append(`
+            <div id="${team.team_id}" class="equipos-item mx-auto" data-toggle="modal" data-target="#equipos-modal">
                 <span class="equipos-titulo">${team.team_name}</span>
                 <img class="equipos-img" src="${team.team_logo_img}" alt="${team.team_name}">
             </div>
@@ -192,9 +266,7 @@ $(document).ready(function () {
     function displayLocations() {
 
         locations.forEach(location => {
-            $('#sedes .flex-column').append(`
-                          <div class="mt-3">
-
+            $('.sedes-container').append(`
             <div class="sedes-item mx-auto" data-toggle="modal" data-target="#${location.id}">
                 <span class="sedes-titulo">${location.name}</span>
             </div>
@@ -211,7 +283,7 @@ $(document).ready(function () {
                                 <h6>${location.address}</h6>
                             </div>
         
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
         
                         <!-- Modal body -->
@@ -226,7 +298,6 @@ $(document).ready(function () {
                 </div>
             </div>
         
-        </div>
             `)
         })
 
@@ -289,8 +360,6 @@ $(document).ready(function () {
 
     function matchesOnPortrait(resultadoMatch, locationMatch, matchId) {
         return `
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <br>
         <div class="equipo-detalle">
             <div class="text-center">
                 <p class="versus-modal">${resultadoMatch[0].team1}</p>
@@ -309,9 +378,9 @@ $(document).ready(function () {
                 <h5>Fecha: <span class="modal-date">${resultadoMatch[0].fullDay}</span></h5>
             </div>
             <h5>Lugar: <span class="modal-date">${locationMatch[0].name}</span></h5>
-            <h5 data-toggle="collapse" data-target="#iframe-map">Dirección: <span class="modal-date">${locationMatch[0].address}</span> <i class="ml-1 fas fa-caret-down"></i></h5>
+            <h5>Dirección: <span class="modal-date">${locationMatch[0].address}</span></h5>
             <br>
-            <div id="iframe-map" class="shadow-sm embed-responsive embed-responsive-21by9 collapse">
+            <div id="iframe-map" class="shadow-sm embed-responsive embed-responsive-21by9">
             <iframe src="${locationMatch[0].map}"></iframe>
             </div>
             <br>
@@ -351,7 +420,8 @@ $(document).ready(function () {
         `
     };
 });
+
 $(window).on('load', function () {
     // Animate loader off screen
-    $(".se-pre-con").fadeOut("slow");
+    $(".pre-loader").fadeOut("slow");
 });

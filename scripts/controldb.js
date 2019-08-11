@@ -39,7 +39,7 @@ function writeNewPost(uid, username, title, body) {
   // Write the new post's data simultaneously in the posts list and the user's post list.
   var updates = {};
   updates['/posts/' + temaId + '/' + newPostKey] = postData;
-  
+
   return firebase.database().ref().update(updates);
 }
 
@@ -64,8 +64,8 @@ function createPostElement(postId, title, text, author) {
       <p class="caja-post-comentario mb-2">${text}</p>
       <hr class="mt-0 mb-2">
       <div class="d-flex justify-content-between">
-          <h6 class="left">Por ${author}</h6>
-          <h6 class="right" data-toggle="collapse" data-target="#post${postId}">Comentarios<i class="ml-1 fas fa-caret-down"></i></h6>
+          <h6 class="left shadow-dark-green">Por ${author}</h6>
+          <h6 class="right shadow-dark-green" data-toggle="collapse" data-target="#post${postId}">Comentarios<i class="ml-1 fas fa-caret-down"></i></h6>
       </div>
       <div id="post${postId}" class="collapse" data-parent="#recent-posts-list">
         <div class="form-group mt-1 form-comment">
@@ -86,7 +86,7 @@ function createCommentElement(text, author) {
     `
     <div class="caja-comentario px-1">
       <hr>
-      <h6 class="tx-p cm-autor">${author} dijo:</h6>
+      <h6 class="tx-p cm-autor shadow-dark-green">${author} dijo:</h6>
       <p class="pl-1 comentario">${text}</p>
     </div>
     `
@@ -97,6 +97,7 @@ function createCommentElement(text, author) {
  * Inicio los listeners, y traigo los temas/comentarios ya creados de la DB.
  */
 function startDatabaseQueries() {
+
   // Los temas se traen desde 'post/$iDdelCorrespondientePartido. EJ: 'post/108054'.
   const lastPostMatchRef = firebase.database().ref('posts/' + temaId).limitToLast(100);
   // Los comentarios se traen desde 'comments/$iDdelCorrespondientePartido. EJ: 'comments/108054'.
@@ -105,8 +106,16 @@ function startDatabaseQueries() {
   // [LIMITADO A 1, PERO AL PARECER NO FUNCIONA.]
   const commentsLast = firebase.database().ref('comments/' + temaId).limitToLast(1);
 
+  commentsPostRef.once("value")
+  .then(function(snapshot) {
+    if (!snapshot.exists()) {
+      $('.alert').alert('close');
+      emptyMessage();
+    }
+  });
   // Traigo los post.
   var fetchPosts = function (postsRef) {
+    
     // Al iniciar el foro, trae todos los temas ($post), cuando se añade un nuevo post, gracias al listener que dejo al 
     // finalizar la funcion, lo agrega también sin tener que reiniciar.
     postsRef.on('child_added', function (post) {
@@ -115,6 +124,7 @@ function startDatabaseQueries() {
       // 'post.val().title' = titulo del post.
       // 'post.val().body' = cuerpo del post.
       // 'post.val().author' = creador del post.
+
       $('#recent-posts-list').prepend(
         // Paso esos datos como parametros para crear y añadir al html el post.
         createPostElement(post.key, post.val().title, post.val().body, post.val().author)
@@ -138,7 +148,7 @@ function startDatabaseQueries() {
 
         // Con 'ctn' + el id, busco en el html el post al que pertenece y lo añado.
         $('#ctn' + comentarios[com].postId).prepend(createCommentElement(comentarios[com].text, comentarios[com].author));
-      
+
       }
     });
   };
@@ -146,7 +156,6 @@ function startDatabaseQueries() {
   // Fetching and displaying all posts of each sections.
   fetchPosts(lastPostMatchRef);
   fetchComments(commentsPostRef);
-
   //Como tengo separados los comentarios por partido y no por tema, si uso child_added no me detecta nada, por ende tengo que
   // escuchar por algun cambio que se produzca.
   // ===============================================
@@ -169,7 +178,15 @@ function startDatabaseQueries() {
   listeningFirebaseRefs.push(lastPostMatchRef);
   listeningFirebaseRefs.push(commentsLast);
 }
-
+/*  */
+function emptyMessage() {
+  $('#foro-t').append(
+    `<div id="empty-forum" class="alert alert-success text-center mx-auto fade show">
+    <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+    No hay temas en este foro.<br>
+    Sé el primero en crear uno.
+  </div>`)
+}
 /**
  * Datos del usuario en la base de datos.
  */
@@ -177,7 +194,7 @@ function writeUserDataOnDB(userId, name, email) {
   firebase.database().ref('users/' + userId).set({
     username: name,
     email: email,
-      });
+  });
 }
 
 /**
@@ -229,17 +246,17 @@ function onAuthStateChanged(user) {
  * Obtengo el nombre de usuario para agregar como parametro de autor en la base de datos.
  */
 function newPostForCurrentUser(title, text) {
-  
+
   var userId = firebase.auth().currentUser.uid;
 
   return firebase.database().ref('/users/' + userId).once('value').then(function (snapshot) {
     var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    
-    return writeNewPost(firebase.auth().currentUser.uid, username,title, text);
-    
+
+    return writeNewPost(firebase.auth().currentUser.uid, username, title, text);
+
   });
 
-  
+
 }
 
 function transition(toPage) {
@@ -261,7 +278,7 @@ function addMessage() {
   $('.fix-container').prepend(
     `
       <div class="alert alert-success alert-dismissible">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
       Elige un partido para entrar al tema.
       </div>
       `
@@ -296,6 +313,7 @@ window.addEventListener('load', function () {
     firebase.auth().signInWithPopup(provider);
     transition('#fixture');
     addMessage();
+    $('.volver').removeClass('hide');
     $('#nav-bar').addClass('nav-activo');
   });
 
@@ -310,7 +328,7 @@ window.addEventListener('load', function () {
 
   // Saves message on form submit.
   addPostButton.addEventListener('click', function () {
-
+    $('.alert').alert('close');
     let title = titleInput.value;
     let text = messageInput.value;
 
